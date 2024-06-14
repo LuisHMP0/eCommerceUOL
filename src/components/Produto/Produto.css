@@ -1,0 +1,162 @@
+.produto {
+    position: relative;
+    width: 22%;
+    height: 446px;
+    margin: 60px 18px 30px 18px;
+    color: #3A3A3A;
+    transition: transform 0.3s
+}
+
+.produto img {
+    width: 285px;
+    height: 301px;
+    display: block;
+}
+
+.descricao {
+    width: 285px;
+    height: 145px;
+    padding-top: 10px;
+    background-color: #F4F5F7;
+}
+
+.descricao h1, .descricao p {
+    padding-left: 16px;
+}
+
+.descricao h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.descricao .subtitulo {
+    font-size: 16px;
+    font-weight: 500;
+    color: #898989;
+}
+
+.preco {
+    display: flex;
+}
+
+.preco .p1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.preco .p2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #B0B0B0;
+    text-decoration: line-through;
+}
+
+.promocao {
+    position: absolute;
+    top: 30px; 
+    left: 200px;
+    width: 48px;
+    height: 48px;
+    background-color: #E97171;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promocao p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.novoProduto {
+    position: absolute;
+    top: 30px; 
+    left: 200px;
+    width: 48px;
+    height: 48px;
+    background-color: #2EC1AC;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.novoProduto p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.produto:hover {
+    transform: scale(1.05);
+}
+
+.details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 285px;
+    height: 446px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.produto:hover .details {
+    opacity: 1;
+}
+
+.detailsDiv01 {
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+}
+.detailsDiv01 p {
+    margin: 10px 20px 0 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.seeDetails {
+    width: 202px;
+    height: 48px;
+    background-color: #FFFFFF;
+    color: #B88E2F;
+    font-weight: 600;
+    border: none;
+    margin-top: 180px;
+    cursor: pointer;
+}
+
+.detailsDiv01 img {
+    position: absolute;
+    top: 254px;
+}
+
+.share, .compare, .like {
+    display: flex;
+}
+
+img.share {
+    width: 12px;
+    height: 13.33px;
+    left: 15px;
+}
+
+img.compare {
+    width: 13.1px;
+    height: 14px;
+    left: 102px;
+}
+
+img.like {
+    width: 13.84px;
+    height: 11.9px;
+    right: 52px;
+}

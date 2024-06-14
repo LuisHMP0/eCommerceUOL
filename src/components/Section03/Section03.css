@@ -1,0 +1,40 @@
+.section03 {
+    height: 270px;
+    background-color: #FAF3EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width: 1225px) {
+    .section03 {
+        display: grid;
+        grid-template-columns: repeat(2,200px);
+        height: 400px
+    }
+  }
+
+@media(max-width: 750px) {
+
+    .section03 p {
+        font-size: 16px;
+    }
+}
+
+.section03 img {
+    width: 60px;
+    height: 60px;
+    margin: 0 15px 0 70px;
+}
+
+.pMaior {
+    color: #242424;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.pMenor {
+    color: #898989;
+    font-size: 20px;
+    font-weight: 500;
+}
