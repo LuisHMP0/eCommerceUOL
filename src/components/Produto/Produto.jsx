@@ -1,8 +1,8 @@
 import React from 'react'
 import './Produto.css'
-import compare from './img/compare'
-import compartilhar from './img/compartilhar'
-import like from './img/like'
+import compare from './img/compare.png'
+import compartilhar from './img/compartilhar.png'
+import like from './img/like.png'
 
 const Produto = (props) => {
   return (

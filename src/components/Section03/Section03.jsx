@@ -1,9 +1,9 @@
 import React from 'react'
 import './Section03.css'
-import entrega from './img/entrega'
-import suporte from './img/suporte'
-import trofeu from './img/trofeu'
-import verificado from './img/verificado'
+import entrega from './img/entrega.png'
+import suporte from './img/suporte.png'
+import trofeu from './img/trofeu.png'
+import verificado from './img/verificado.png'
 
 const Section03 = () => {
   return (

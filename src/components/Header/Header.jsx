@@ -1,10 +1,10 @@
 import React from 'react'
 import './Header.css'
 import login from './img/loginLogo.png'
-import carrinho from './img/carrinhoLogo'
-import coracao from './img/coracaoLogo'
-import lupa from './img/lupaLogo'
-import logoHeader from './img/logoHeader'
+import carrinho from './img/carrinhoLogo.png'
+import coracao from './img/coracaoLogo.png'
+import lupa from './img/lupaLogo.png'
+import logoHeader from './img/logoHeader.png'
 
 const Header = () => {
   return (
