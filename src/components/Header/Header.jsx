@@ -1,11 +1,16 @@
 import React from 'react'
 import './Header.css'
+import login from './img/loginLogo.png'
+import carrinho from './img/carrinhoLogo'
+import coracao from './img/coracaoLogo'
+import lupa from './img/lupaLogo'
+import logoHeader from './img/logoHeader'
 
 const Header = () => {
   return (
     <header className='header'> 
         <div className='logo'>
-          <img className='logoHeader' src="src/components/Header/img/Meubel House_Logos-05.png" alt="LogoCompassHeader" />
+          <img className='logoHeader' src={logoHeader} alt="LogoCompassHeader" />
           <p> Compass </p>
         </div>
         <nav className='nav1'>
@@ -18,10 +23,10 @@ const Header = () => {
          </nav>
          <nav className='nav2'>
             <ul>
-                <li> <a href="#login"> <img src="src/components/Header/img/loginLogo.png" alt="loginLogo" /> </a> </li>
-                <li> <a href="#lupa"> <img src="src/components/Header/img/lupaLogo.png" alt="logoLupa" /> </a> </li>
-                <li> <a href="#coracao"> <img src="src/components/Header/img/coracaoLogo.png" alt="logoCoracao" /> </a> </li>
-                <li> <a href="#carrinho"> <img src="src/components/Header/img/carrinhoLogo.png" alt="logoCarrinho" /> </a> </li>
+                <li> <a href="#login"> <img src={login} alt="loginLogo" /> </a> </li>
+                <li> <a href="#lupa"> <img src={lupa} alt="logoLupa" /> </a> </li>
+                <li> <a href="#coracao"> <img src={coracao} /> </a> </li>
+                <li> <a href="#carrinho"> <img src={carrinho} alt="logoCarrinho" /> </a> </li>
             </ul>
          </nav>
         

@@ -1,5 +1,8 @@
 import React from 'react'
 import './Produto.css'
+import compare from './img/compare'
+import compartilhar from './img/compartilhar'
+import like from './img/like'
 
 const Produto = (props) => {
   return (
@@ -32,17 +35,17 @@ const Produto = (props) => {
             <div className='detailsDiv01'>
 
               <div className='share'>
-                <img className='share' src="src/components/Produto/img/compartilhar.png" alt="share" />
+                <img className='share' src={compartilhar} alt="share" />
                 <p>Share</p>
               </div>
 
               <div className='compare'>
-                <img className='compare' src="src/components/Produto/img/compare.png" alt="compare" />
+                <img className='compare' src={compare} alt="compare" />
                 <p>Compare</p>
               </div>
 
               <div className='like'>
-                <img className='like' src="src/components/Produto/img/like.png" alt="like" />
+                <img className='like' src={like} alt="like" />
                 <p>Like</p>
               </div>
           </div>

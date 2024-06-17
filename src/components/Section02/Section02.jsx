@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Section02.css'
+import filter from './img/filter.png'
+import line from './img/Line.png'
 
 const Section02 = ({onFiltroChange}) => {
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
@@ -21,7 +23,7 @@ const Section02 = ({onFiltroChange}) => {
         <div className="filtro-container">
 
             <div className='filter'>
-                <img className='imgFilter' src="src/components/Section02/img/filter.png" alt="Filtro" onClick={toggleOpcoes} />
+                <img className='imgFilter' src={filter} alt="Filtro" onClick={toggleOpcoes} />
                 <p> Filter </p>
             </div>
         
@@ -36,7 +38,7 @@ const Section02 = ({onFiltroChange}) => {
           )}
 
             <div className='results'> 
-                <img className='lineImg' src="src/components/Section02/img/Line.png" alt="Line" />
+                <img className='lineImg' src={line} alt="Line" />
                 <p> Showing 1–16 of 32 results </p>
             </div>
 
