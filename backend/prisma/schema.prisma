@@ -20,4 +20,6 @@ model Product {
   price Float 
   discount Float?
   newProduct Boolean
+  imageUrl String?
+  description String?
 }
