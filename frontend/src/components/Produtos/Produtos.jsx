@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import './Produtos.css'
 import Produto from '../Produto/Produto'
@@ -12,126 +12,20 @@ import Section02 from '../Section02/Section02'
 
 const Produtos = () => {
 
-    const [produtos, setProdutos] = useState([
-        {
-            src: SytherineIMG,
-            titulo: 'Syltherine',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000',
-            precoRiscado: 'Rp 3.500.000',
-            desconto: '-30%'
-        },
-        {
-            src: LeviosaIMG,
-            titulo: 'Leviosa',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000'
-        },
-        {
-            src: LolitoIMG,
-            titulo: 'Lolito',
-            subtitulo: 'Luxury big sofa',
-            preco: '7.000.000',
-            precoRiscado: 'Rp 14.000.000',
-            desconto: '-50%'
-        },
-        {
-            src: RespiraIMG,
-            titulo: 'Respira',
-            subtitulo: 'Outdoor bar table and stool',
-            preco: '500.000',
-            novoProduto: true
-        },
-        {
-            src: SytherineIMG,
-            titulo: 'Syltherine',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000',
-            precoRiscado: 'Rp 3.500.000',
-            desconto: '-30%'
-        },
-        {
-            src: LeviosaIMG,
-            titulo: 'Leviosa',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000'
-        },
-        {
-            src: LolitoIMG,
-            titulo: 'Lolito',
-            subtitulo: 'Luxury big sofa',
-            preco: '7.000.000',
-            precoRiscado: 'Rp 14.000.000',
-            desconto: '-50%'
-        },
-        {
-            src: RespiraIMG,
-            titulo: 'Respira',
-            subtitulo: 'Outdoor bar table and stool',
-            preco: '500.000',
-            novoProduto: true
-        },
-        {
-            src: SytherineIMG,
-            titulo: 'Syltherine',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000',
-            precoRiscado: 'Rp 3.500.000',
-            desconto: '-30%'
-        },
-        {
-            src: LeviosaIMG,
-            titulo: 'Leviosa',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000'
-        },
-        {
-            src: LolitoIMG,
-            titulo: 'Lolito',
-            subtitulo: 'Luxury big sofa',
-            preco: '7.000.000',
-            precoRiscado: 'Rp 14.000.000',
-            desconto: '-50%'
-        },
-        {
-            src: RespiraIMG,
-            titulo: 'Respira',
-            subtitulo: 'Outdoor bar table and stool',
-            preco: '500.000',
-            novoProduto: true
-        },
-        {
-            src: SytherineIMG,
-            titulo: 'Syltherine',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000',
-            precoRiscado: 'Rp 3.500.000',
-            desconto: '-30%'
-        },
-        {
-            src: LeviosaIMG,
-            titulo: 'Leviosa',
-            subtitulo: 'Stylish cafe chair',
-            preco: '2.500.000'
-        },
-        {
-            src: LolitoIMG,
-            titulo: 'Lolito',
-            subtitulo: 'Luxury big sofa',
-            preco: '7.000.000',
-            precoRiscado: 'Rp 14.000.000',
-            desconto: '-50%'
-        },
-        {
-            src: RespiraIMG,
-            titulo: 'Respira',
-            subtitulo: 'Outdoor bar table and stool',
-            preco: '500.000',
-            novoProduto: true
-        },
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/products')
+            .then(response => response.json())
+            .then(data => {
+                setProdutos(data);
+                console.log('dados recebidos: ', data);
+            })
+            .catch(error => {
+                console.error('Erro when searching for products', error)
+            });
         
-        
-    ]);
+    }, []);
 
     const handleFiltroChange = (filtro) => {
         let produtosOrdenados = [...produtos];
@@ -147,6 +41,10 @@ const Produtos = () => {
         setProdutos(produtosOrdenados);
     };
 
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('pt-BR').format(price);
+    };
+
     return (
         <>
         <div className='produtos-container'>
@@ -154,14 +52,14 @@ const Produtos = () => {
             <div className='produtos'>
                 {produtos.map((produto, index) => (
                     <Produto
-                        key={index}
+                        key={produto.id}
                         src={produto.src}
-                        titulo={produto.titulo}
-                        subtitulo={produto.subtitulo}
-                        preco={produto.preco}
+                        titulo={produto.title}
+                        subtitulo={produto.subtitle}
+                        preco={formatPrice(produto.price)}
                         precoRiscado={produto.precoRiscado}
-                        desconto={produto.desconto}
-                        novoProduto={produto.novoProduto}
+                        desconto={produto.discount ? `${(produto.discount * 100).toFixed(0)}%` : ''}
+                        novoProduto={produto.newProduct}
                     />
                 ))}
             </div>
