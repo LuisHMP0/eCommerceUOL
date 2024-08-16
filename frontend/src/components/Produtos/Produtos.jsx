@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 import './Produtos.css'
 import Produto from '../Produto/Produto'
-import SytherineIMG from './img/Syltherine.png'
-import LeviosaIMG from './img/Leviosa.png'
-import LolitoIMG from './img/Lolito.png'
-import RespiraIMG from './img/Respira.png'
 import Botoes from '../Botoes/Botoes'
 import Section02 from '../Section02/Section02'
 
@@ -13,32 +9,25 @@ import Section02 from '../Section02/Section02'
 const Produtos = () => {
 
     const [produtos, setProdutos] = useState([]);
+    const [filter, setFilter] = useState('');
 
-    useEffect(() => {
-        fetch('http://localhost:3000/products')
+    const fetchProducts = (orderBy) => {
+        const url = `http://localhost:3000/products?orderBy=${orderBy}`
+
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 setProdutos(data);
-                console.log('dados recebidos: ', data);
             })
-            .catch(error => {
-                console.error('Erro when searching for products', error)
-            });
-        
-    }, []);
+            .catch(error => { console.error('Erro when searching for products', error); });
+    };
 
-    const handleFiltroChange = (filtro) => {
-        let produtosOrdenados = [...produtos];
+    useEffect(() => {
+        fetchProducts(filter);
+    }, [filter]);
 
-        if (filtro === 'nomeAZ') {
-            produtosOrdenados.sort((a, b) => a.titulo.localeCompare(b.titulo));
-        } else if (filtro === 'precoDesc') {
-            produtosOrdenados.sort((a, b) => parseFloat(b.preco.replace(/\./g, '')) - parseFloat(a.preco.replace(/\./g, '')));
-        } else if (filtro === 'precoCres') {
-            produtosOrdenados.sort((a, b) => parseFloat(a.preco.replace(/\./g, '')) - parseFloat(b.preco.replace(/\./g, '')));
-        } 
-
-        setProdutos(produtosOrdenados);
+    const handleFiltroChange = (orderBy) => {
+        setFilter(orderBy);
     };
 
     const formatPrice = (price) => {
@@ -58,11 +47,18 @@ const Produtos = () => {
         <>
         <div className='produtos-container'>
         <Section02 onFiltroChange={handleFiltroChange} />
+
+            <div className='ordenacao-container'>
+                    <button onClick={() => handleFiltroChange('nameAZ')}>Nome A-Z</button>
+                    <button onClick={() => handleFiltroChange('nameZA')}>Nome Z-A</button>
+                    <button onClick={() => handleFiltroChange('priceAsc')}>Preço Ascendente</button>
+                    <button onClick={() => handleFiltroChange('priceDesc')}>Preço Descendente</button>
+            </div>
             <div className='produtos'>
                 {produtos.map((produto, index) => (
                     <Produto
                         key={produto.id}
-                        src={produto.src}
+                        src={produto.imageUrl}
                         titulo={produto.title}
                         subtitulo={produto.subtitle}
                         preco={formatPrice(priceDiscount(produto.price, produto.discount))}
