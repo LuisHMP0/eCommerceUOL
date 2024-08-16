@@ -12,8 +12,8 @@ const Botoes = ({ onPageChange }) => {
 
   return (
       <div className="pagination-buttons">
-          <button onClick={handlePrevious}>Anterior</button>
-          <button onClick={handleNext}>Próxima</button>
+          <button className='pagination' onClick={handlePrevious}>Previous</button>
+          <button className='pagination' onClick={handleNext}>Next</button>
       </div>
   );
 };

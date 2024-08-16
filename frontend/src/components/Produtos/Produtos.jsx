@@ -3,7 +3,6 @@ import React from 'react'
 import './Produtos.css'
 import Produto from '../Produto/Produto'
 import Botoes from '../Botoes/Botoes'
-import Section02 from '../Section02/Section02'
 
 
 const Produtos = () => {
@@ -63,14 +62,31 @@ const Produtos = () => {
     return (
         <>
         <div className='produtos-container'>
-        <Section02 onFiltroChange={handleFiltroChange} />
 
-            <div className='ordenacao-container'>
-                    <button onClick={() => handleFiltroChange('nameAZ')}>Nome A-Z</button>
-                    <button onClick={() => handleFiltroChange('nameZA')}>Nome Z-A</button>
-                    <button onClick={() => handleFiltroChange('priceAsc')}>Preço Ascendente</button>
-                    <button onClick={() => handleFiltroChange('priceDesc')}>Preço Descendente</button>
+            <div className='filters'>
+            <select onChange={(e) => handleFiltroChange(e.target.value)}>
+                <option value='default'> Filter </option>
+                <option value='nameAZ'>Name A-Z</option>
+                <option value='nameZA'>Name Z-A</option>
+                <option value='priceAsc'>Rising Price</option>
+                <option value='PriceDesc'>Decreasing Price</option>
+
+            </select>
+
+            <div className='showing'>
+                <p>Showing 1–16 of 32 results</p>
             </div>
+
+            <div className='pagination-controls'>
+                    <select onChange={(e) => handleLimitChange(Number(e.target.value))} value={limit}>
+                        <option value={16}> Show </option>
+                        <option value={4}>4 products per page</option>
+                        <option value={8}>8 products per page</option>
+                        <option value={16}>16 products per page</option>
+                    </select>
+            </div>
+            </div>
+
             <div className='produtos'>
                 {produtos.map((produto) => (
                     <Produto
@@ -85,14 +101,10 @@ const Produtos = () => {
                     />
                 ))}
             </div>
-            <div className='pagination-controls'>
-                    <Botoes onPageChange={handlePageChange} />
-                    <select onChange={(e) => handleLimitChange(Number(e.target.value))} value={limit}>
-                        <option value={4}>4 produtos por página</option>
-                        <option value={8}>8 produtos por página</option>
-                        <option value={16}>16 produtos por página</option>
-                    </select>
-                </div>
+
+            <Botoes onPageChange={handlePageChange} />
+
+            
         </div>
     </>
 

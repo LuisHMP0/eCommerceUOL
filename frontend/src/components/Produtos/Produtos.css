@@ -19,3 +19,22 @@
     grid-template-columns: repeat(1, 300px);
   }
 }
+
+.filters {
+  height: 100px;
+  display: flex;
+  background-color: #F9F1E7;
+  align-items: center;
+  justify-content: space-around;
+}
+
+select {
+  cursor: pointer;
+  background-color: #F9F1E7;
+  font-size: 18px;
+}
+
+.showing {
+  border-left: 1px solid;
+  padding-left: 20px;
+}
