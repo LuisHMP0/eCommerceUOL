@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { Product } from '@prisma/client';
-import { title } from 'process';
 
 @Injectable()
 export class ProductService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllProducts(orderBy: string): Promise<Product[]> {
+  async getAllProducts(orderBy: string, page: number = 1, limit: number = 16): Promise<Product[]> {
 
     let orderByClause;
 
@@ -35,9 +34,8 @@ export class ProductService {
 
     return this.prisma.product.findMany({
       orderBy: orderByClause,
+      skip: (page - 1) * limit,
+      take: Number(limit),
     }); 
   }
-
-
-
 }

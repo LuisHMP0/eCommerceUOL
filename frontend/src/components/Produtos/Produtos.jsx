@@ -10,25 +10,42 @@ const Produtos = () => {
 
     const [produtos, setProdutos] = useState([]);
     const [filter, setFilter] = useState('');
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(16);
 
-    const fetchProducts = (orderBy) => {
-        const url = `http://localhost:3000/products?orderBy=${orderBy}`
+    const fetchProducts = () => {
+        const url = `http://localhost:3000/products?orderBy=${filter}&page=${page}&limit=${limit}`;
 
         fetch(url)
-            .then(response => response.json())
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json()
+            })
             .then(data => {
                 setProdutos(data);
+                console.log('recebidos: ', data)
             })
             .catch(error => { console.error('Erro when searching for products', error); });
     };
 
     useEffect(() => {
-        fetchProducts(filter);
-    }, [filter]);
+        fetchProducts();
+    }, [filter, page, limit]);
 
     const handleFiltroChange = (orderBy) => {
         setFilter(orderBy);
     };
+
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+    };
+
+    const handleLimitChange = (newLimit) => { 
+        setLimit(newLimit);
+        setPage(1); 
+    }
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('pt-BR').format(price);
@@ -55,7 +72,7 @@ const Produtos = () => {
                     <button onClick={() => handleFiltroChange('priceDesc')}>Preço Descendente</button>
             </div>
             <div className='produtos'>
-                {produtos.map((produto, index) => (
+                {produtos.map((produto) => (
                     <Produto
                         key={produto.id}
                         src={produto.imageUrl}
@@ -68,9 +85,14 @@ const Produtos = () => {
                     />
                 ))}
             </div>
-            <div className='botoes'>
-                <Botoes />
-            </div>
+            <div className='pagination-controls'>
+                    <Botoes onPageChange={handlePageChange} />
+                    <select onChange={(e) => handleLimitChange(Number(e.target.value))} value={limit}>
+                        <option value={4}>4 produtos por página</option>
+                        <option value={8}>8 produtos por página</option>
+                        <option value={16}>16 produtos por página</option>
+                    </select>
+                </div>
         </div>
     </>
 

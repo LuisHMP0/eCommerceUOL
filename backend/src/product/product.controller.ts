@@ -7,7 +7,13 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  async getAllProducts(@Query('orderBy') orderBy: string): Promise<Product[]> {
-    return this.productService.getAllProducts(orderBy);
+  async getAllProducts(
+    @Query('orderBy') orderBy: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ): Promise<Product[]> {
+    const currentPage = parseInt(page, 10) || 1;
+    const currentLimit = parseInt(limit, 10) || 16;
+    return this.productService.getAllProducts(orderBy, currentPage, currentLimit);
   }
 };
