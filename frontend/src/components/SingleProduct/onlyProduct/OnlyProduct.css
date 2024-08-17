@@ -1,0 +1,131 @@
+.rectangle {
+    display: flex;
+    height: 100px;
+    background-color: #F9F1E7;
+    align-items: center;
+}
+
+.rectangle p {
+    padding: 0 25px 0 25px;
+    margin-left: 20px;
+}
+
+.homeEshop {
+    color: #9F9F9F;
+}
+
+.propsTitle {
+    border-left: solid 1px #9F9F9F;
+}
+
+.product {
+    height: 820px;
+    display: flex;
+    margin: 40px 0 0 42px;
+}
+
+.forImages {
+    display: flex;
+    flex-direction: column;
+}
+
+.forImages img {
+    height: 80px;
+    width: 76px;
+    border: 1px solid #9F9F9F;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.oneImage {
+    height: 500px;
+    width: 423px;
+    border: solid 1px #9F9F9F;
+    border-radius: 10px;
+    margin-left: 50px;
+}
+
+.productData {
+    margin-left: 100px;
+}
+
+.productData h1 {
+    font-size: 42px;
+}
+
+.productData .Pprice {
+    color: #9F9F9F;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.productData .Pcustumer {
+    font-size: 13px;
+    color: #9F9F9F;
+    border-left: solid 1px #9F9F9F;
+    padding-left: 15px;
+}
+
+.productData .Pdescription {
+    font-size: 13px;
+}
+
+.productData .Psize, .Pcolor {
+    color: #9F9F9F;
+    font-size: 14px;
+}
+
+.sizeButtons button{
+    height: 30px;
+    width: 30px;
+    background-color: #F9F1E7;
+    border: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.colorButtons {
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    padding: 1px;
+}
+
+.color01 {
+    background-color: aqua;
+    padding: 1px;
+}
+
+.quantityProducts {
+    display: flex;
+}
+
+.counter {
+    height: 64px;
+    width: 123px;
+    border: 1px solid #9F9F9F;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.counter button { 
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 19px;
+    padding: 0 20px 0 20px;
+    font-size: 15px;
+}
+
+.addToCart {
+    width: 215px;
+    height: 64px;
+    background: none;
+    border: 1px solid #9F9F9F;
+    border-radius: 10px;
+    margin-left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}

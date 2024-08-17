@@ -21,7 +21,7 @@ const Produto = (props) => {
             <h1> {props.titulo || 'TituloUndefined'} </h1>
             <p className='subtitulo'> {props.subtitulo || 'SubtituloUndefined'} </p>
             <div className='preco'>
-                <p className='p1'>Rp {props.preco || '0'} </p>
+                <p className='p1'>Rp {props.preco || 'priceUndefined'} </p>
                 <p className='p2'>{props.precoRiscado} </p>
             </div>
         </div>

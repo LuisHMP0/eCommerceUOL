@@ -5,6 +5,7 @@ import Section01 from './components/Home/Section01/Section01'
 import Produtos from './components/Home/Produtos/Produtos'
 import Section03 from './components/Home/Section03/Section03'
 import Footer from './components/Home/Footer/Footer'
+import OnlyProduct from './components/SingleProduct/onlyProduct/OnlyProduct'
 
 function HomePage() {
   return (
@@ -22,6 +23,7 @@ function SingleProduct() {
   return (
     <>
       <Header />
+      <OnlyProduct />
     </>
   )
 }
