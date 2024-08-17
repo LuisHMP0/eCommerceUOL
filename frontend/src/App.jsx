@@ -1,20 +1,41 @@
 import './App.css'
-import Header from './components/Header/Header'
-import Section01 from '/src/components/Section01/Section01.jsx'
-import Produtos from './components/Produtos/Produtos'
-import Section03 from './components/Section03/Section03'
-import Footer from './components/Footer/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from '../src/components/Home/Header/Header'
+import Section01 from './components/Home/Section01/Section01'
+import Produtos from './components/Home/Produtos/Produtos'
+import Section03 from './components/Home/Section03/Section03'
+import Footer from './components/Home/Footer/Footer'
+
+function HomePage() {
+  return (
+    <>
+      <Header />
+      <Section01 />
+      <Produtos /> 
+      <Section03 /> 
+      <Footer /> 
+    </>
+  )
+}
+
+function SingleProduct() {
+  return (
+    <>
+      <Header />
+    </>
+  )
+}
 
 function App() {
 
   return (
     <>
-    {/**/}
-    <Header />
-    <Section01 />
-    <Produtos />
-    <Section03 />
-    <Footer />
+    <BrowserRouter> 
+      <Routes> 
+        <Route path='/' element={<HomePage />} />
+        <Route path='/singleProduct' element={<SingleProduct />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

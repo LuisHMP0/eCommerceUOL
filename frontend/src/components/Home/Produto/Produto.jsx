@@ -1,10 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Produto.css'
 import compare from './img/compare.png'
 import compartilhar from './img/compartilhar.png'
 import like from './img/like.png'
 
 const Produto = (props) => {
+
+  const navigate = useNavigate();
+
+  const handleDetailsClick = () => {
+      navigate('/singleProduct');
+    }
+
   return (
     <>
     <div className='produto'>
@@ -31,7 +39,7 @@ const Produto = (props) => {
         )}
 
         <section className='details'>
-            <button className='seeDetails'> See Details </button>
+            <button className='seeDetails' onClick={handleDetailsClick} > See Details </button>
             <div className='detailsDiv01'>
 
               <div className='share'>
