@@ -1,3 +1,7 @@
+body {
+    justify-content: center;
+}
+
 .rectangle {
     display: flex;
     height: 100px;
@@ -21,7 +25,8 @@
 .product {
     height: 820px;
     display: flex;
-    margin: 40px 0 0 42px;
+    margin: 40px 0 0 0;
+    justify-content: center;
 }
 
 .forImages {
@@ -64,15 +69,18 @@
     color: #9F9F9F;
     border-left: solid 1px #9F9F9F;
     padding-left: 15px;
+    margin-top: 20px;
 }
 
 .productData .Pdescription {
     font-size: 13px;
+    margin-top: 20px;
 }
 
 .productData .Psize, .Pcolor {
     color: #9F9F9F;
     font-size: 14px;
+    margin-top: 20px;
 }
 
 .sizeButtons button{
@@ -84,18 +92,17 @@
     margin-right: 20px;
     cursor: pointer;
     font-size: 13px;
+    margin-top: 10px;
 }
 
-.colorButtons {
+.color01, .color02, .color03 {
     height: 30px;
     width: 30px;
     border-radius: 50px;
     padding: 1px;
-}
-
-.color01 {
-    background-color: aqua;
-    padding: 1px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 20px;
 }
 
 .quantityProducts {
@@ -108,6 +115,7 @@
     border: 1px solid #9F9F9F;
     border-radius: 10px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .counter button { 
@@ -123,9 +131,42 @@
     width: 215px;
     height: 64px;
     background: none;
-    border: 1px solid #9F9F9F;
+    border: 1px solid ;
     border-radius: 10px;
-    margin-left: 20px;
+    margin: 20px 0 0 20px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.additionalInformation {
+    border-top: 1px solid #D9D9D9;
+    margin-top: 70px;
+}
+
+.additionalInformation p {
+    color: #9F9F9F;
+    padding-bottom: 10px;
+}
+
+.sku {
+    margin-top: 40px;
+}
+
+.share {
+    align-items: center;
+}
+
+.share img {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.relatedProducts h2 {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.relatedProducts {
+    height: 777px;
 }

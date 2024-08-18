@@ -24,6 +24,7 @@ function SingleProduct() {
     <>
       <Header />
       <OnlyProduct />
+      <Footer />
     </>
   )
 }

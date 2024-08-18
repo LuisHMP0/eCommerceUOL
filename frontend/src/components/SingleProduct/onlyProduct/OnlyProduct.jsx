@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import './OnlyProduct.css'
+import faceImg from './imgs/facebook.svg'
+import linkedinImg from './imgs/linkedin.svg'
+import twitterImg from './imgs/twitter.svg'
 
 const OnlyProduct = (props) => {
 
@@ -14,6 +17,7 @@ const OnlyProduct = (props) => {
       setCount(count - 1);
     }
   };
+
 
   return (
   <>
@@ -42,9 +46,7 @@ const OnlyProduct = (props) => {
       <p className='Psize'> Size </p>
 
       <div className='sizeButtons'> 
-        <button> L </button>
-        <button> XL </button>
-        <button> XS </button>
+        <button> {props.size} </button>
       </div>
 
       <p className='Pcolor'> Color </p>
@@ -66,7 +68,22 @@ const OnlyProduct = (props) => {
         <button className='addToCart'> Add To Cart </button>
         
       </div>
+
+      <div className='additionalInformation'>
+        <p className='sku'> SKU : {props.sku || 'SKU Undefined'} </p>
+        <p className='category'> Category : {props.category || 'Category Undefined'} </p>
+        <p className='tags'> Tags : {props.tags || 'Tags Undefined'} </p>
+        <p className='share'> Share: 
+        <img src={faceImg} alt='faceImg'></img>
+        <img src={linkedinImg} alt='linkedinImg'></img>
+        <img src={twitterImg} alt='twitterImg'></img>
+        </p>
+      </div>
     </div>
+  </section>
+
+  <section className='relatedProducts'>
+    <h2> Related Products </h2>
   </section>
   </>
   )
