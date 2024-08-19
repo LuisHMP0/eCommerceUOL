@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Produto.css'
 import compare from './img/compare.png'
@@ -10,8 +9,9 @@ const Produto = (props) => {
   const navigate = useNavigate();
 
   const handleDetailsClick = () => {
-      navigate('/singleProduct');
-    }
+    navigate(`/singleProduct/${props.id}`);
+    console.log('Navigation to:', `/singleProduct/${props.id}`)
+  }
 
   return (
     <>

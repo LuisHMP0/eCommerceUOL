@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from '@prisma/client';
 
@@ -16,4 +16,10 @@ export class ProductController {
     const currentLimit = parseInt(limit, 10) || 16;
     return this.productService.getAllProducts(orderBy, currentPage, currentLimit);
   }
+
+  @Get(':id')
+  async getProductById(@Param('id') id: string): Promise<Product> {
+    return this.productService.getProductById(id);
+  }
+
 };

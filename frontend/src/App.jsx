@@ -36,7 +36,7 @@ function App() {
     <BrowserRouter> 
       <Routes> 
         <Route path='/' element={<HomePage />} />
-        <Route path='/singleProduct' element={<SingleProduct />} />
+        <Route path='/singleProduct/:id' element={<SingleProduct />} />
       </Routes>
     </BrowserRouter>
     </>

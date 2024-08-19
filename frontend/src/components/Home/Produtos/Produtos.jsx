@@ -91,6 +91,7 @@ const Produtos = () => {
                 {produtos.map((produto) => (
                     <Produto
                         key={produto.id}
+                        id={produto.id}
                         src={produto.imageUrl}
                         titulo={produto.title}
                         subtitulo={produto.subtitle}

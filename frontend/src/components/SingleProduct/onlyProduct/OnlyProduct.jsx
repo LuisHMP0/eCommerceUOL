@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OnlyProduct.css'
 import faceImg from './imgs/facebook.svg'
 import linkedinImg from './imgs/linkedin.svg'
 import twitterImg from './imgs/twitter.svg'
+import { useParams } from 'react-router-dom'
 
-const OnlyProduct = (props) => {
+const OnlyProduct = () => {
 
   const [count, setCount] = useState(1);
   
@@ -18,35 +19,46 @@ const OnlyProduct = (props) => {
     }
   };
 
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:3000/products/${id}`)
+        .then(response => { return response.json()})
+        .then(data => setProduct(data))
+        .catch(error => console.error('Error fetching product:', error));
+    }
+  }, [id]);  
 
   return (
   <>
   <section className='rectangle'> 
     <p className='homeEshop'>Home </p> {`>`}
     <p className='homeEshop'>Shop </p> {`>`}
-    <p className='propsTitle'> {props.title || 'titleUndefined'} </p>
+    <p className='propsTitle'> {product.title || 'titleUndefined'} </p>
   </section>
 
   <section className='product'>
     <div className='forImages'>
-      <img src={props.img1} alt='imgProduct01'></img>
-      <img src={props.img2} alt='imgProduct02'></img>
-      <img src={props.img3} alt='imgProduct03'></img>
-      <img src={props.img4} alt='imgProduct04'></img>
+      <img src={product.img1} alt='imgProduct01'></img>
+      <img src={product.img2} alt='imgProduct02'></img>
+      <img src={product.img3} alt='imgProduct03'></img>
+      <img src={product.img4} alt='imgProduct04'></img>
     </div>
     <div className='oneImage'>
-      <img src={props.mainImg} alt='mainImgProduct'></img>
+      <img src={product.mainImg} alt='mainImgProduct'></img>
     </div>
     <div className='productData'>
 
-      <h1> {props.title || 'titleUndefined'} </h1>
-      <p className='Pprice'> Rp {props.price || 'priceUndefined'} </p>
-      <p className='Pcustumer'> {props.custumer || '0'} Custumer Review </p>
-      <p className='Pdescription'> {props.description || 'aaaaaaaaaaaaaaaaaaaaa'} </p>
+      <h1> {product.title || 'titleUndefined'} </h1>
+      <p className='Pprice'> Rp {product.price || 'priceUndefined'} </p>
+      <p className='Pcustumer'> {product.custumer || '0'} Custumer Review </p>
+      <p className='Pdescription'> {product.description || 'aaaaaaaaaaaaaaaaaaaaa'} </p>
       <p className='Psize'> Size </p>
 
       <div className='sizeButtons'> 
-        <button> {props.size} </button>
+        <button> {product.size} </button>
       </div>
 
       <p className='Pcolor'> Color </p>
@@ -70,9 +82,9 @@ const OnlyProduct = (props) => {
       </div>
 
       <div className='additionalInformation'>
-        <p className='sku'> SKU : {props.sku || 'SKU Undefined'} </p>
-        <p className='category'> Category : {props.category || 'Category Undefined'} </p>
-        <p className='tags'> Tags : {props.tags || 'Tags Undefined'} </p>
+        <p className='sku'> SKU : {product.id || 'SKU Undefined'} </p>
+        <p className='category'> Category : {product.category || 'Category Undefined'} </p>
+        <p className='tags'> Tags : {product.tags || 'Tags Undefined'} </p>
         <p className='share'> Share: 
         <img src={faceImg} alt='faceImg'></img>
         <img src={linkedinImg} alt='linkedinImg'></img>
