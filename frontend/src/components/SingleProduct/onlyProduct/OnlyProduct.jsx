@@ -25,11 +25,20 @@ const OnlyProduct = () => {
   useEffect(() => {
     if (id) {
       fetch(`http://localhost:3000/products/${id}`)
-        .then(response => { return response.json()})
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
         .then(data => setProduct(data))
         .catch(error => console.error('Error fetching product:', error));
     }
-  }, [id]);  
+  }, [id]);
+  
+  if (!product) return <p>Loading...</p>;
+  
+
 
   return (
   <>
