@@ -19,6 +19,10 @@ const OnlyProduct = () => {
     }
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('pt-BR').format(price);
+};
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   
@@ -61,9 +65,9 @@ const OnlyProduct = () => {
     <div className='productData'>
 
       <h1> {product.title || 'titleUndefined'} </h1>
-      <p className='Pprice'> Rp {product.price || 'priceUndefined'} </p>
+      <p className='Pprice'> Rp {formatPrice(product.price) || 'priceUndefined'} </p>
       <p className='Pcustumer'> {product.custumer || '0'} Custumer Review </p>
-      <p className='Pdescription'> {product.description || 'aaaaaaaaaaaaaaaaaaaaa'} </p>
+      <p className='Pdescription'> {product.description} </p>
       <p className='Psize'> Size </p>
 
       <div className='sizeButtons'> 
@@ -92,7 +96,7 @@ const OnlyProduct = () => {
 
       <div className='additionalInformation'>
         <p className='sku'> SKU : {product.id || 'SKU Undefined'} </p>
-        <p className='category'> Category : {product.category || 'Category Undefined'} </p>
+        <p className='category'> Category : {product.category?.name || 'Category Undefined'} </p>
         <p className='tags'> Tags : {product.tags || 'Tags Undefined'} </p>
         <p className='share'> Share: 
         <img src={faceImg} alt='faceImg'></img>

@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Product {
-  id String @id@default(uuid())
+  id String @id @default(uuid())
   title String 
   subtitle String
   price Float 
@@ -22,4 +22,12 @@ model Product {
   newProduct Boolean
   imageUrl String?
   description String?
+  categoryId Int? 
+  category Category? @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  products Product[]
 }
