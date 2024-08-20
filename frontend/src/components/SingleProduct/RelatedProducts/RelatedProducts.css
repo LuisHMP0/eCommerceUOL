@@ -8,3 +8,29 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+.showMore {
+    height: 48px;
+    width: 245px;
+    border: 1px solid #B88E2F;
+    color: #B88E2F;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+    transition: color 0.3s ease, background-color 0.3s ease
+}
+
+.showMore:hover {
+    color: white;
+    background-color: #B88E2F;
+}
+
+.loadNewProducts {
+    text-align: center;
+    margin: 20px 0 50px 0;
+}
+
+.productsGridContainer {
+    display: flex;
+    justify-content: center;
+}

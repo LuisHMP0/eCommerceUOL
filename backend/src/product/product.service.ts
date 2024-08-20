@@ -40,7 +40,7 @@ export class ProductService {
     
   }
 
-  async getProductById(id: string): Promise<{ product: Product; relatedProducts: Product[] }> {
+  async getProductById(id: string, page: number = 1, limit: number = 4): Promise<{ product: Product; relatedProducts: Product[] }> {
     const product = await this.prisma.product.findUnique({
       where: { id },
       include: { category: true },
@@ -50,7 +50,9 @@ export class ProductService {
       where: {
         categoryId: product.categoryId,
         id: { not: id },
-      }
+      },
+      skip: (page - 1) * limit,
+      take: limit, 
     })
     
     return { relatedProducts, product }

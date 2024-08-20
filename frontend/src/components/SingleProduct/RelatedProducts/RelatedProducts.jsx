@@ -2,13 +2,14 @@ import React, {} from 'react'
 import './RelatedProducts.css'
 import Produto from '../../Home/Produto/Produto'
 
-const RelatedProducts = ( { relatedProducts = [] } ) => {
+const RelatedProducts = ( { relatedProducts = [], onLoadMore } ) => {
 
 
   return (
     <>
     <section className='relatedProducts'>
         <h2> Related Products </h2>
+        <div className='productsGridContainer'> 
         <div className='productsGrid'>
             {relatedProducts.map((product) => (
                 <Produto
@@ -22,7 +23,10 @@ const RelatedProducts = ( { relatedProducts = [] } ) => {
           />
         ))}
         </div>
-        
+        </div>
+        <div className='loadNewProducts'>
+          <button className='showMore' onClick={onLoadMore}> Show More </button>
+        </div>
     </section>
     </>
   )

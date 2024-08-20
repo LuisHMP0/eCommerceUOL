@@ -18,8 +18,15 @@ export class ProductController {
   }
 
   @Get(':id')
-  async getProductById(@Param('id') id: string): Promise<{ product: Product; relatedProducts: Product[] }> {
-  return this.productService.getProductById(id);
+  async getProductById(
+    @Param('id') id: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ): Promise<{ product: Product; relatedProducts: Product[] }> {
+
+    const pageNumber = parseInt(page, 10) || 1;
+    const limitNumber = parseInt(limit, 10) || 4;
+    return this.productService.getProductById(id, pageNumber, limitNumber);
 }
 
 };

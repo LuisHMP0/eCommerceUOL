@@ -5,14 +5,16 @@ import linkedinImg from './imgs/linkedin.svg'
 import twitterImg from './imgs/twitter.svg'
 import { useParams } from 'react-router-dom'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const OnlyProduct = () => {
 
-  const [count, setCount] = useState(1);
   const { id } = useParams();
+  const [count, setCount] = useState(1);
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+  const [page, setPage] = useState(1);
   
   const increment = () => {
     setCount(count + 1);
@@ -28,11 +30,22 @@ const OnlyProduct = () => {
     return new Intl.NumberFormat('pt-BR').format(price);
 };
 
+  const loadMoreRelatedProducts = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/products/${id}?page=${page + 1}&limit=4`);
+      const data = await response.json();
+      setRelatedProducts((prev) => [...prev, ...data.relatedProducts]);
+      setPage(page + 1);
+    } catch (error) {
+      console.error('Error fetching more related products:', error);
+    }
+  };
+
   
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const response = await fetch(`http://localhost:3000/products/${id}?page=1&limit=4`);
         const data = await response.json();
         setProduct(data.product);
         setRelatedProducts(data.relatedProducts);
@@ -71,7 +84,15 @@ const OnlyProduct = () => {
 
       <h1> {product.title || 'titleUndefined'} </h1>
       <p className='Pprice'> Rp {formatPrice(product.price) || 'priceUndefined'} </p>
+      <div className='starContainer'>
+      <FontAwesomeIcon className='starGold' icon={faStar} />
+      <FontAwesomeIcon className='starGold' icon={faStar} />
+      <FontAwesomeIcon className='starGold' icon={faStar} />
+      <FontAwesomeIcon className='starGold' icon={faStar} />
+      <FontAwesomeIcon className='starGold' icon={faStar} />
+    
       <p className='Pcustumer'> {product.custumer || '0'} Custumer Review </p>
+      </div>
       <p className='Pdescription'> {product.description} </p>
       <p className='Psize'> Size </p>
 
@@ -112,7 +133,7 @@ const OnlyProduct = () => {
     </div>
   </section>
 
-  <RelatedProducts relatedProducts={relatedProducts} />
+  <RelatedProducts relatedProducts={relatedProducts} onLoadMore={loadMoreRelatedProducts} />
 
   </>
   )

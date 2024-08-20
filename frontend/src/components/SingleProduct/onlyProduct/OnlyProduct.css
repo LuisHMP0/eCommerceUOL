@@ -69,7 +69,7 @@ body {
     color: #9F9F9F;
     border-left: solid 1px #9F9F9F;
     padding-left: 15px;
-    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .productData .Pdescription {
@@ -161,3 +161,12 @@ body {
     cursor: pointer;
 }
 
+.starContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.starGold {
+    color: gold;
+}
