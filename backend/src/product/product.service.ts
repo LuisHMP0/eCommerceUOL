@@ -40,12 +40,19 @@ export class ProductService {
     
   }
 
-  async getProductById(id: string): Promise<Product> {
+  async getProductById(id: string): Promise<{ product: Product; relatedProducts: Product[] }> {
     const product = await this.prisma.product.findUnique({
       where: { id },
       include: { category: true },
     });
 
-    return product;
+    const relatedProducts = await this.prisma.product.findMany({
+      where: {
+        categoryId: product.categoryId,
+        id: { not: id },
+      }
+    })
+    
+    return { relatedProducts, product }
   }
 }

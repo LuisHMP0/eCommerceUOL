@@ -18,8 +18,8 @@ export class ProductController {
   }
 
   @Get(':id')
-  async getProductById(@Param('id') id: string): Promise<Product> {
-    return this.productService.getProductById(id);
-  }
+  async getProductById(@Param('id') id: string): Promise<{ product: Product; relatedProducts: Product[] }> {
+  return this.productService.getProductById(id);
+}
 
 };

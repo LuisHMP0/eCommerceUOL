@@ -4,10 +4,15 @@ import faceImg from './imgs/facebook.svg'
 import linkedinImg from './imgs/linkedin.svg'
 import twitterImg from './imgs/twitter.svg'
 import { useParams } from 'react-router-dom'
+import RelatedProducts from '../RelatedProducts/RelatedProducts'
 
 const OnlyProduct = () => {
 
   const [count, setCount] = useState(1);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
   
   const increment = () => {
     setCount(count + 1);
@@ -23,25 +28,25 @@ const OnlyProduct = () => {
     return new Intl.NumberFormat('pt-BR').format(price);
 };
 
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
   
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:3000/products/${id}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => setProduct(data))
-        .catch(error => console.error('Error fetching product:', error));
-    }
+    const fetchProductData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const data = await response.json();
+        setProduct(data.product);
+        setRelatedProducts(data.relatedProducts);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    };
+
+    fetchProductData();
   }, [id]);
-  
-  if (!product) return <p>Loading...</p>;
-  
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }  
 
 
   return (
@@ -107,9 +112,8 @@ const OnlyProduct = () => {
     </div>
   </section>
 
-  <section className='relatedProducts'>
-    <h2> Related Products </h2>
-  </section>
+  <RelatedProducts relatedProducts={relatedProducts} />
+
   </>
   )
 }
