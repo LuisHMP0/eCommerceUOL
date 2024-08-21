@@ -9,6 +9,7 @@ import logoHeader from './img/logoHeader.png'
 
 const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
+  const [isCartVisible, setIsCartVisible] = useState(false)
 
   const handleMenuClick = () => {
     setShowMenuMobile(!showMenuMobile);
@@ -16,6 +17,10 @@ const Header = () => {
 
   const closeMenu = () => {
     setShowMenuMobile(false)
+  }
+
+  const toggleCartVisibility = () => {
+    setIsCartVisible(!isCartVisible);
   }
 
   return (
@@ -37,8 +42,25 @@ const Header = () => {
                 <li> <a href="#login"> <img src={login} alt="loginLogo" /> </a> </li>
                 <li> <a href="#lupa"> <img src={lupa} alt="logoLupa" /> </a> </li>
                 <li> <a href="#coracao"> <img src={coracao} /> </a> </li>
-                <li> <a href="#carrinho"> <img src={carrinho} alt="logoCarrinho" /> </a> </li>
+                <li> <a href="#carrinho" onClick={toggleCartVisibility} > <img src={carrinho} alt="logoCarrinho" /> </a> </li>
             </ul>
+            {isCartVisible && (
+              <>
+              <div className='overlay-background' onClick={toggleCartVisibility}></div>
+              <div className='cart-overlay'>
+                <div className='headerMiniCart'>
+                  <h2> Shopping Cart </h2>
+                  <button className='toClose' onClick={toggleCartVisibility}> X </button>
+                </div>
+                <div className='productsInCart'></div>
+                <div className='buttonsLink'>
+                  <button className='Cart'> Cart </button>
+                  <button className='Checkout'> Checkout </button>
+                  <button className='Comparison'> Comparison </button>
+                </div>
+              </div>
+              </>
+            )}
          </nav>
         {!showMenuMobile && (
         <div className='menu-mobile' onClick={handleMenuClick}>

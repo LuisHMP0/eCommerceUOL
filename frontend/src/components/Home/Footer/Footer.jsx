@@ -11,9 +11,7 @@ const Footer = () => {
       setEmail(event.target.value);
     };
     
-    {/* Validação regex */}
     const validateEmail = (email) => {
-      // Regex pattern for validating an email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     };
