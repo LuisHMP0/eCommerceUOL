@@ -7,28 +7,30 @@ import { useParams } from 'react-router-dom'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../../store/cart/cartSlice'
 
 const OnlyProduct = () => {
 
   const { id } = useParams();
-  const [count, setCount] = useState(1);
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [page, setPage] = useState(1);
-  
-  const increment = () => {
-    setCount(count + 1);
-  };
+  const [count, setCount] = useState(1);
 
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
+  const dispatch = useDispatch()
+  
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('pt-BR').format(price);
-};
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addItem({ product, quantity: count }));
+      setCount(1);
+    }
+  }
 
   const loadMoreRelatedProducts = async () => {
     try {
@@ -111,12 +113,12 @@ const OnlyProduct = () => {
       <div className='quantityProducts'>
 
         <div className='counter'>
-          <button className='counterButton' onClick={decrement} disabled={count <= 1}> - </button>
+          <button className='counterButton' onClick={() => setCount(count - 1) } disabled={count <= 1}> - </button>
           <span className='counterDisplay'> {count} </span>
-          <button className='counterButton' onClick={increment}> + </button>
+          <button className='counterButton' onClick={() => setCount(count + 1)}> + </button>
         </div>
 
-        <button className='addToCart'> Add To Cart </button>
+        <button className='addToCart' onClick={handleAddToCart} > Add To Cart </button>
         
       </div>
 

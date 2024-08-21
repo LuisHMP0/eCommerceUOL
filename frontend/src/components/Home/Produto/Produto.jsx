@@ -16,7 +16,7 @@ const Produto = (props) => {
   return (
     <>
     <div className='produto'>
-        <img src={props.src} alt={props.alt} />
+        <img src={`http://localhost:3000${props.src}`} alt={props.alt} />
         <div className='descricao'>
             <h1> {props.titulo || 'TituloUndefined'} </h1>
             <p className='subtitulo'> {props.subtitulo || 'SubtituloUndefined'} </p>

@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+const BASE_URL = 'http://localhost:3000'
 
 async function main() {
   await prisma.product.createMany({
@@ -11,7 +12,7 @@ async function main() {
         price: 19.99,
         discount: 2.00,
         newProduct: true,
-        imageUrl: '/imgs/syltherine.png',
+        imageUrl: `${BASE_URL}/imgs/syltherine.png`,
         description: 'Descrição do Produto 1',
       },
     ]

@@ -6,6 +6,7 @@ import carrinho from './img/carrinhoLogo.png'
 import coracao from './img/coracaoLogo.png'
 import lupa from './img/lupaLogo.png'
 import logoHeader from './img/logoHeader.png'
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
@@ -23,6 +24,7 @@ const Header = () => {
     setIsCartVisible(!isCartVisible);
   }
 
+  const cartItems = useSelector((state) => state.cart.items);
   return (
     <header className='header'> 
         <div className='logo'>
@@ -52,7 +54,22 @@ const Header = () => {
                   <h2> Shopping Cart </h2>
                   <button className='toClose' onClick={toggleCartVisibility}> X </button>
                 </div>
-                <div className='productsInCart'></div>
+                <div className='productsInCart'>
+                  {cartItems.length > 0 ? (
+                    cartItems.map(item => (
+                      <div key={item.id} className='cart-item'>
+                        <img src={item.imageUrl} alt={item.title} />
+                        <div className='cart-item-details'>
+                          <p className='cartTitle'>{item.title}</p>
+                          <div className='priceAndQuantity'>
+                            <p className='cartQuantity'>{item.quantity}</p>
+                            <p className='x'> x </p>
+                            <p className='cartPrice'>{`Rp. ${item.quantity * item.price}`}</p>
+                          </div>
+                        </div>
+                      </div>))) : (<p className='noItems'>No items in cart</p>)}
+                </div>
+                <p className='subtotal'></p>
                 <div className='buttonsLink'>
                   <button className='Cart'> Cart </button>
                   <button className='Checkout'> Checkout </button>
