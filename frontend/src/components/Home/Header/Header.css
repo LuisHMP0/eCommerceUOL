@@ -187,7 +187,8 @@ header p {
 }
 
 .buttonsLink {
-    margin-top: auto;
+    position: absolute;
+    top: 88%;
     border-top: 1px solid #D9D9D9;
     padding: 10px 20px 40px 20px;
 }
@@ -283,4 +284,22 @@ header p {
     margin-top: 20px;
     margin-right: 170px;
     font-weight: 400;
+}
+
+.subtotalContainer {
+    display: flex;
+    position: absolute;
+    top: 80%;
+}
+
+.subtotal {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.priceSubtotal {
+    font-size: 16px;
+    font-weight: 600;
+    color: #B88E2F;
+    padding-left: 100px;
 }

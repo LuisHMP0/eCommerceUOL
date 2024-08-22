@@ -7,6 +7,7 @@ import Section03 from './components/Home/Section03/Section03'
 import Footer from './components/Home/Footer/Footer'
 import OnlyProduct from './components/SingleProduct/onlyProduct/OnlyProduct'
 import RelatedProducts from '../src/components/SingleProduct/RelatedProducts/RelatedProducts'
+import Cart from '../src/components/Cart/Cart'
 
 function HomePage() {
   return (
@@ -30,6 +31,18 @@ function SingleProduct() {
   )
 }
 
+function CartPage() {
+  return (
+    <>
+      <Header />
+      <Section01 h1='Cart' />
+      <Cart />
+      <Section03 />
+      <Footer />
+    </>
+  )
+}
+
 function App() {
 
   return (
@@ -38,6 +51,7 @@ function App() {
       <Routes> 
         <Route path='/' element={<HomePage />} />
         <Route path='/singleProduct/:id' element={<SingleProduct />} />
+        <Route path='/cart' element={<CartPage />} />
       </Routes>
     </BrowserRouter>
     </>

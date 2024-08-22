@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Header.css'
 import login from './img/loginLogo.png'
 import carrinho from './img/carrinhoLogo.png'
@@ -25,6 +25,15 @@ const Header = () => {
   }
 
   const cartItems = useSelector((state) => state.cart.items);
+  const subtotal = cartItems.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
+  const navigate = useNavigate()
+  const handleCartClick = () => {
+    navigate('/cart')
+  }
+
   return (
     <header className='header'> 
         <div className='logo'>
@@ -54,6 +63,7 @@ const Header = () => {
                   <h2> Shopping Cart </h2>
                   <button className='toClose' onClick={toggleCartVisibility}> X </button>
                 </div>
+                <div className='productsInCartContainer'> 
                 <div className='productsInCart'>
                   {cartItems.length > 0 ? (
                     cartItems.map(item => (
@@ -69,9 +79,13 @@ const Header = () => {
                         </div>
                       </div>))) : (<p className='noItems'>No items in cart</p>)}
                 </div>
-                <p className='subtotal'></p>
+                </div>
+                <div className='subtotalContainer'> 
+                <p className='subtotal'> Subtotal </p>
+                <p className='priceSubtotal'>{subtotal}</p>
+                </div>
                 <div className='buttonsLink'>
-                  <button className='Cart'> Cart </button>
+                  <button onClick={handleCartClick} className='Cart'> Cart </button>
                   <button className='Checkout'> Checkout </button>
                   <button className='Comparison'> Comparison </button>
                 </div>
