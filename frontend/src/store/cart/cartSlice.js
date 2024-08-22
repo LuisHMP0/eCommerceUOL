@@ -9,11 +9,21 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState, 
     reducers: {
-        increment: (state) => {
-            state.quantityItens += 1
+        increment: (state, action) => {
+            const id = action.payload;
+            const item = state.items.find(item => item.id === id);
+            if (item) {
+                item.quantity += 1; 
+                state.quantityItens += 1;
+            }
         },
-        decrement: (state) => {
-            state.quantityItens -= 1
+        decrement: (state, action) => {
+            const id = action.payload;
+            const item = state.items.find(item => item.id === id);
+            if (item && item.quantity > 0) {
+                item.quantity -= 1;
+                item.quantityItens -= 1;
+            }
         },
         addItem: (state, action) => {
             const { product, quantity } = action.payload;
