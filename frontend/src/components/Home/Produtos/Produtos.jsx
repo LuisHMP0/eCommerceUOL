@@ -46,19 +46,6 @@ const Produtos = () => {
         setPage(1); 
     }
 
-    const formatPrice = (price) => {
-        return new Intl.NumberFormat('pt-BR').format(price);
-    };
-
-    const priceDiscount = (price, discount) => {
-        if (discount == null || discount <= 0) {
-            return price;
-        }
-        let discountAmount = price * discount
-        let finalPrice = price - discountAmount;
-        return finalPrice;
-    }
-
     return (
         <>
         <div className='produtos-container'>
@@ -95,8 +82,7 @@ const Produtos = () => {
                         src={produto.imageUrl}
                         titulo={produto.title}
                         subtitulo={produto.subtitle}
-                        preco={formatPrice(priceDiscount(produto.price, produto.discount))}
-                        precoRiscado={produto.discount ? formatPrice(produto.price) : ''}
+                        preco={produto.price}
                         desconto={produto.discount ? `${(produto.discount * 100).toFixed(0)}%` : ''}
                         novoProduto={produto.newProduct}
                     />

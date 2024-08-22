@@ -11,7 +11,6 @@
     background-color: #F9F1E7;
     align-items: center;
     margin: 68px 30px 0;
-    justify-content: space-around;
 }
 
 .colums p {
@@ -33,16 +32,7 @@
 }
 
 .cartTotais p { 
-    font-size: 16px;
     font-weight: 500;
-}
-
-.subtotalCartMain {
-    margin-top: 50px;
-}
-
-.total {
-    margin-top: 30px;
 }
 
 .checkout {
@@ -67,6 +57,11 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 30px;
+    margin-left: 30px;
+}
+
+.item p {
+    width: 150px;
 }
 
 .quantityContainer {
@@ -90,4 +85,55 @@
 
 .trash {
     cursor: pointer;
+    padding-right: 30px;
+}
+
+.priceColum {
+    position: absolute;
+    left: 34.7%;
+}
+
+.subtotalColum {
+    position: absolute;
+    left: 50.5%;
+}
+
+.quantityColum {
+    position: absolute;
+    left: 43.7%;
+}
+
+.productColum {
+    position: absolute;
+    left: 23%;
+}
+
+.pPriceId, .pTitleId {
+    color: #9F9F9F;
+}
+
+.subtotalCartMainContainer, .totalCartMainContainer {
+    display: flex;
+    margin-top: 45px;
+    margin-left: 80px;
+    align-items: center;
+}
+
+.subtotalCartMainValue, .totalCartMainValue {
+    padding-left: 80px;
+}
+
+.subtotalCartMainValue {
+    font-size: 16px;
+    color: #9F9F9F;
+}
+
+.totalCartMainValue {
+    color: #B88E2F;
+    font-size: 22px;
+}
+
+.noItemsMain {
+    text-align: center;
+    margin-top: 40px;
 }

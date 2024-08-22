@@ -6,11 +6,14 @@ import carrinho from './img/carrinhoLogo.png'
 import coracao from './img/coracaoLogo.png'
 import lupa from './img/lupaLogo.png'
 import logoHeader from './img/logoHeader.png'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import trash from '../../Cart/lixeira.png'
+import { removeItem } from '../../../store/cart/cartSlice'
 
 const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false)
+  const dispatch = useDispatch()
 
   const handleMenuClick = () => {
     setShowMenuMobile(!showMenuMobile);
@@ -68,7 +71,7 @@ const Header = () => {
                   {cartItems.length > 0 ? (
                     cartItems.map(item => (
                       <div key={item.id} className='cart-item'>
-                        <img src={item.imageUrl} alt={item.title} />
+                        <img className='productCartItem' src={item.imageUrl} alt={item.title} />
                         <div className='cart-item-details'>
                           <p className='cartTitle'>{item.title}</p>
                           <div className='priceAndQuantity'>
@@ -77,12 +80,13 @@ const Header = () => {
                             <p className='cartPrice'>{`Rp. ${item.quantity * item.price}`}</p>
                           </div>
                         </div>
+                        <img className='trashCartHeader' src={trash} alt='trash' onClick={() => {dispatch(removeItem(item.id))}} />
                       </div>))) : (<p className='noItems'>No items in cart</p>)}
                 </div>
                 </div>
                 <div className='subtotalContainer'> 
-                <p className='subtotal'> Subtotal </p>
-                <p className='priceSubtotal'>{subtotal}</p>
+                  <p className='subtotal'> Subtotal </p>
+                  <p className='priceSubtotal'>{subtotal}</p>
                 </div>
                 <div className='buttonsLink'>
                   <button onClick={handleCartClick} className='Cart'> Cart </button>

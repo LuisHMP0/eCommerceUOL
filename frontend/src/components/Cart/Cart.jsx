@@ -9,41 +9,49 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const quantityItens = useSelector((state) => state.quantityItens)
   const dispatch = useDispatch()
-
+  const total = cartItems.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
 
   return (
     <>
     <section className='cartContainer'>
       <div className='columsContainer'> 
         <div className='colums'>
-          <p> Product </p>
-          <p> Price </p>
-          <p> Quantity </p>
-          <p> Subtotal </p>
+          <p className='productColum'> Product </p>
+          <p className='priceColum'> Price </p>
+          <p className='quantityColum'> Quantity </p>
+          <p className='subtotalColum'> Subtotal </p>
         </div>
         <div className='productsInCart'>
           {cartItems.length > 0 ? (
             cartItems.map(item => (
               <div key={item.id} className='item'>
                 <img className='productImage' src={item.src} alt={item.title} />
-                <p> {item.title} </p>
-                <p> Rp. {item.price} </p>
+                <p className='pTitleId'> {item.title} </p>
+                <p className='pPriceId'> Rp. {item.price} </p>
                 <div className='quantityContainer'>
                   <button className='increment' onClick={() => dispatch(decrement(item.id))} disabled={item.quantity <= 1}> - </button>
                   <span className='spanQuantity'> {item.quantity} </span>
                   <button className='decrement' onClick={() => dispatch(increment(item.id))}> + </button>
                 </div>
-                <p> Rp. {item.quantity * item.price} </p>
+                <p className='subtotalId'> Rp. {(item.quantity * item.price).toFixed(2)} </p>
                 <img className='trash' src={trash} alt="trash-remove" onClick={() => dispatch(removeItem(item.id))} />
               </div>
             ))
-          ): <p>No items in cart </p>}
+          ): <p className='noItemsMain'>No items in cart </p>}
         </div>
       </div>
       <div className='cartTotais'>
         <h2> Cart Totais </h2>
-        <p className='subtotalCartMain'> Subtotal </p>
-        <p className='total'> Total </p>
+        <div className='subtotalCartMainContainer'>
+          <p className='subtotalCartMain'> Subtotal </p>
+          <p className='subtotalCartMainValue'> {total} </p>
+        </div>
+        <div className='totalCartMainContainer'>
+          <p className='totalCartMain'> Total </p>
+          <p className='totalCartMainValue'> {total} </p>
+        </div>
         <button className='checkout'> Check Out </button>
       </div>
     </section>

@@ -9,9 +9,9 @@ async function main() {
       {
         title: 'Produto 1',
         subtitle: 'Subtítulo do Produto 1',
-        price: 19.99,
-        discount: 2.00,
-        newProduct: true,
+        price: 100000,
+        discount: 0.5,
+        newProduct: false,
         imageUrl: `${BASE_URL}/imgs/syltherine.png`,
         description: 'Descrição do Produto 1',
       },

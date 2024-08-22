@@ -6,6 +6,18 @@ import { Product } from '@prisma/client';
 export class ProductService {
   constructor(private prisma: PrismaService) {}
 
+  private formatPrice(price: number): string {
+    return new Intl.NumberFormat('pt-BR').format(price);
+  }
+
+  private priceDiscount(price: number, discount: number | null): number {
+    if (discount == null || discount <= 0) {
+      return price;
+    }
+    const finalPrice = price * (1 - discount);
+    return parseFloat(finalPrice.toFixed(2))
+  }
+
   async getAllProducts(orderBy: string, page: number = 1, limit: number = 16): Promise<Product[]> {
 
     let orderByClause;
@@ -32,11 +44,21 @@ export class ProductService {
 
     }
 
-    return this.prisma.product.findMany({
+    const products = await this.prisma.product.findMany({
       orderBy: orderByClause,
       skip: (page - 1) * limit,
       take: Number(limit),
     }); 
+
+    return products.map(product => {
+      const discountedPrice = this.priceDiscount(product.price, product.discount);
+      console.log(`preço original: ${product.price}, desconto: ${product.discount}, preço final: ${this.priceDiscount(product.price, product.discount)}`)
+      return {
+        ...product,
+        price: discountedPrice, 
+        formattedPrice: this.formatPrice(discountedPrice), 
+      };
+    });
     
   }
 
@@ -53,8 +75,23 @@ export class ProductService {
       },
       skip: (page - 1) * limit,
       take: limit, 
-    })
+    });
+
+    const formattedProduct = {
+      ...product,
+      price: this.priceDiscount(product.price, product.discount), 
+      formattedPrice: this.formatPrice(this.priceDiscount(product.price, product.discount)), 
+    };
+
+    const formattedRelatedProducts = relatedProducts.map(relatedProduct => {
+      const discountedPrice = this.priceDiscount(relatedProduct.price, relatedProduct.discount);
+      return {
+        ...relatedProduct,
+        price: discountedPrice,
+        formattedPrice: this.formatPrice(discountedPrice), 
+      };
+    });
     
-    return { relatedProducts, product }
+    return { product: formattedProduct, relatedProducts: formattedRelatedProducts }
   }
 }
