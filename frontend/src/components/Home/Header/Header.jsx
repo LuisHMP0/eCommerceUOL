@@ -36,6 +36,9 @@ const Header = () => {
   const handleCartClick = () => {
     navigate('/cart')
   }
+  const handleLoginClick = () => {
+    navigate('/login')
+  }
 
   return (
     <header className='header'> 
@@ -53,7 +56,7 @@ const Header = () => {
          </nav>
          <nav className='nav2'>
             <ul>
-                <li> <a href="#login"> <img src={login} alt="loginLogo" /> </a> </li>
+                <li> <a href="#login" onClick={handleLoginClick} > <img src={login} alt="loginLogo" /> </a> </li>
                 <li> <a href="#lupa"> <img src={lupa} alt="logoLupa" /> </a> </li>
                 <li> <a href="#coracao"> <img src={coracao} /> </a> </li>
                 <li> <a href="#carrinho" onClick={toggleCartVisibility} > <img src={carrinho} alt="logoCarrinho" /> </a> </li>

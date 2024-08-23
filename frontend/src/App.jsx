@@ -8,6 +8,7 @@ import Footer from './components/Home/Footer/Footer'
 import OnlyProduct from './components/SingleProduct/onlyProduct/OnlyProduct'
 import RelatedProducts from '../src/components/SingleProduct/RelatedProducts/RelatedProducts'
 import Cart from '../src/components/Cart/Cart'
+import Login from './components/Login/Login'
 
 function HomePage() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/singleProduct/:id' element={<SingleProduct />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/login' element={ <Login /> } />
       </Routes>
     </BrowserRouter>
     </>
