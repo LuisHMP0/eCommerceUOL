@@ -12,8 +12,13 @@ import { removeItem } from '../../../store/cart/cartSlice'
 
 const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
-  const [isCartVisible, setIsCartVisible] = useState(false)
-  const dispatch = useDispatch()
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const [showDivLogin, setShowDivLogin] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const userName = localStorage.getItem('userName');
+  const isLogged = !!token;
 
   const handleMenuClick = () => {
     setShowMenuMobile(!showMenuMobile);
@@ -32,12 +37,19 @@ const Header = () => {
     return acc + item.price * item.quantity;
   }, 0);
 
-  const navigate = useNavigate()
   const handleCartClick = () => {
     navigate('/cart')
   }
   const handleLoginClick = () => {
     navigate('/login')
+  }
+
+  const alreadyLoggedIn = () => {
+    setShowDivLogin(true);
+  }
+
+  const logoutClick = () => {
+    localStorage.removeItem('token');
   }
 
   return (
@@ -56,7 +68,7 @@ const Header = () => {
          </nav>
          <nav className='nav2'>
             <ul>
-                <li> <a href="#login" onClick={handleLoginClick} > <img src={login} alt="loginLogo" /> </a> </li>
+                <li> <a href="#login" onClick={isLogged ? alreadyLoggedIn : handleLoginClick} > <img src={login} alt="loginLogo" /> </a> </li>
                 <li> <a href="#lupa"> <img src={lupa} alt="logoLupa" /> </a> </li>
                 <li> <a href="#coracao"> <img src={coracao} /> </a> </li>
                 <li> <a href="#carrinho" onClick={toggleCartVisibility} > <img src={carrinho} alt="logoCarrinho" /> </a> </li>
@@ -125,6 +137,23 @@ const Header = () => {
                   <li> <a href="#carrinho"> <img src={carrinho} alt="logoCarrinho" /> </a> </li>
               </ul>
          </nav>
+
+
+         {showDivLogin && (
+          <>
+          <div onClick={() => setShowDivLogin(false)} className='overlay-background'></div>
+          <div className='propertiesLogin'>
+            <h2 className='nameUser'> Welcome {userName} </h2>
+            <p> What do you want? </p>
+            <button> Change password </button>
+            <button> Change username </button>
+            <button> Change email </button>
+            <button onClick={() => {logoutClick(); handleLoginClick()}}> Log in with another account </button>
+            <button onClick={() => {logoutClick(); setShowDivLogin(false)}}>Log out</button>
+          </div>
+
+          </>
+         )}
     </header>
   )
 }

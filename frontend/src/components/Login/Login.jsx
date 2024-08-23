@@ -10,31 +10,32 @@ const Login = () => {
   const navigate = useNavigate()
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
   
-    fetch('http://localhost:3000/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }) 
-    })
-    .then(response => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+  
       if (!response.ok) {
-        return response.json().then(data => {
-          throw new Error(data.message || 'Erro desconhecido');
-        });
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Unknown error');
       }
-      navigate('/')
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
+  
+      const data = await response.json();
+
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('userName', data.userName);
+      navigate('/'); 
+    } catch (error) {
       console.error('Error:', error.message);
-      alert(`${error.message}: Invalid email or password, please try again. `)
-    });
+      alert(`${error.message}: Invalid email or password, please try again.`);
+    }
   };
+  
 
   return (
     <>
