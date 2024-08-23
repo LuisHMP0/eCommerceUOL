@@ -1,15 +1,40 @@
 import React from 'react'
 import './Login.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
+  
+    fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }) 
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(data => {
+          throw new Error(data.message || 'Erro desconhecido');
+        });
+      }
+      navigate('/')
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error.message);
+      alert(`${error.message}: Invalid email or password, please try again. `)
+    });
+  };
 
   return (
     <>
