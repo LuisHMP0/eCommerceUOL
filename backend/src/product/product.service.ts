@@ -52,7 +52,6 @@ export class ProductService {
 
     return products.map(product => {
       const discountedPrice = this.priceDiscount(product.price, product.discount);
-      console.log(`preço original: ${product.price}, desconto: ${product.discount}, preço final: ${this.priceDiscount(product.price, product.discount)}`)
       return {
         ...product,
         price: discountedPrice, 

@@ -7,7 +7,7 @@ async function main() {
   await prisma.product.createMany({
     data: [
       {
-        title: 'Produto 1',
+        title: 'Produto 2',
         subtitle: 'Subtítulo do Produto 1',
         price: 100000,
         discount: 0.5,

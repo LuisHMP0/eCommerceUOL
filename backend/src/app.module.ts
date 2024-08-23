@@ -4,6 +4,7 @@ import { PrismaModule } from 'prisma/prisma.module';
 import { ProductModule } from './product/product.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path'
+import { UserModule } from './user/user.module';
 
 @Module({
   providers: [PrismaService], 
@@ -14,6 +15,7 @@ import { join } from 'path'
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/',
     }),
+    UserModule,
   ]
 })
 
