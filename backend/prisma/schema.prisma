@@ -39,4 +39,24 @@ model User {
   password String
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
+  checkout Checkout[]
+}
+
+model Checkout {
+  id               String   @id @default(uuid())
+  firstName        String
+  lastName         String
+  companyName      String?
+  zipCode          String
+  country          String
+  streetAddress    String
+  city             String
+  province         String
+  addOnAddress     String?
+  emailAddress     String
+  additionalInfo   String?
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

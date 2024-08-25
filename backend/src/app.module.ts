@@ -6,6 +6,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path'
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { CheckoutModule } from './checkout/checkout.module';
 
 @Module({
   providers: [PrismaService], 
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UserModule,
     AuthModule,
+    CheckoutModule,
   ]
 })
 
