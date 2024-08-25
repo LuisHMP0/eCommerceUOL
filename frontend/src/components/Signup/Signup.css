@@ -1,20 +1,20 @@
-.sectionLoginContainer {
+.sectionSignupContainer {
     display: flex;
     position: relative;
 }
 
-.loginContainer {
+.signupContainer {
     position: absolute;
     left: 20%;
     margin-top: 250px;
 }
 
-.h1Login {
+.h1Signup {
     font-size: 32px;
     font-weight: 500;
 }
 
-.pLogin {
+.pSignup {
     font-weight: 500;
 }
 
@@ -28,7 +28,7 @@
     font-weight: 500;
 }
 
-.submitLogin {
+.submitSignup {
     height: 32px;
     width: 404px;
     color: white;
@@ -50,16 +50,6 @@
     color: #D9D9D9;
 }
 
-.imgBeSide {
-    width: 781px;
-    height: 100vh;
-    background-image: url('./imgs/imgBeside.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 0;
-}
-
 .loginContainer form {
     margin: 60px 0 60px 0;
 }
@@ -68,8 +58,14 @@
     margin: 30px 0 60px 0;
 }
 
+.nameField {
+    margin: 30px 0 30px 0;
+}
+
 .navigateToSignup { 
     font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 .navigateToSignup a {

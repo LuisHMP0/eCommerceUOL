@@ -70,12 +70,11 @@ const Login = () => {
         </form>
         <p className='navigateToSignup'>
           Don’t have an account?
-          <a href='/signup'> Sign Up </a>  
+          <a onClick={() => navigate('/signup')}> Sign Up </a>  
         </p>
       </div>
 
-      <div className='imgBeSide'>
-      </div>
+      <div className='imgBeSide'></div>
     </section>
     
     </>

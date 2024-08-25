@@ -9,6 +9,7 @@ import OnlyProduct from './components/SingleProduct/onlyProduct/OnlyProduct'
 import RelatedProducts from '../src/components/SingleProduct/RelatedProducts/RelatedProducts'
 import Cart from '../src/components/Cart/Cart'
 import Login from './components/Login/Login'
+import Signup from './components/Signup/Signup'
 
 function HomePage() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path='/singleProduct/:id' element={<SingleProduct />} />
         <Route path='/cart' element={<CartPage />} />
         <Route path='/login' element={ <Login /> } />
+        <Route path='/signup' element={ <Signup />} /> 
       </Routes>
     </BrowserRouter>
     </>
