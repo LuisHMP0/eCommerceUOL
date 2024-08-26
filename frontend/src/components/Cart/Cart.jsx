@@ -1,17 +1,18 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, decrement, increment, removeItem } from '../../store/cart/cartSlice';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css'
 import trash from './lixeira.png'
 
 const Cart = () => {
 
   const cartItems = useSelector((state) => state.cart.items);
-  const quantityItens = useSelector((state) => state.quantityItens)
   const dispatch = useDispatch()
   const total = cartItems.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
+  const navigate = useNavigate()
 
   return (
     <>
@@ -52,7 +53,7 @@ const Cart = () => {
           <p className='totalCartMain'> Total </p>
           <p className='totalCartMainValue'> {total} </p>
         </div>
-        <button className='checkout'> Check Out </button>
+        <button onClick={() => navigate('/checkout')} className='checkout'> Check Out </button>
       </div>
     </section>
     </>

@@ -68,7 +68,7 @@ const Header = () => {
          </nav>
          <nav className='nav2'>
             <ul>
-                <li> <a href="#login" onClick={isLogged ? alreadyLoggedIn : handleLoginClick} > <img src={login} alt="loginLogo" /> </a> </li>
+                <li> <a onClick={isLogged ? alreadyLoggedIn : handleLoginClick} > <img src={login} alt="loginLogo" /> </a> </li>
                 <li> <a href="#lupa"> <img src={lupa} alt="logoLupa" /> </a> </li>
                 <li> <a href="#coracao"> <img src={coracao} /> </a> </li>
                 <li> <a href="#carrinho" onClick={toggleCartVisibility} > <img src={carrinho} alt="logoCarrinho" /> </a> </li>
@@ -105,7 +105,7 @@ const Header = () => {
                 </div>
                 <div className='buttonsLink'>
                   <button onClick={handleCartClick} className='Cart'> Cart </button>
-                  <button className='Checkout'> Checkout </button>
+                  <button onClick={() => navigate('/checkout')} className='Checkout'> Checkout </button>
                   <button className='Comparison'> Comparison </button>
                 </div>
               </div>

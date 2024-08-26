@@ -12,7 +12,7 @@ export class CheckoutController {
   async createCheckout(@Req() req: Request, @Body() checkoutData: any) {
     const userId = req.user['id']; 
     if (!userId) {
-      throw new Error('[CONTROLLER] User ID is required');
+      throw new Error('[Cotroller] User ID is required');
     }
 
     return this.checkoutService.createCheckout(userId, checkoutData);

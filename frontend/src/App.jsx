@@ -10,6 +10,7 @@ import RelatedProducts from '../src/components/SingleProduct/RelatedProducts/Rel
 import Cart from '../src/components/Cart/Cart'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
+import Checkout from './components/Checkout/Checkout'
 
 function HomePage() {
   return (
@@ -45,6 +46,17 @@ function CartPage() {
   )
 }
 
+function CheckoutPage() {
+  return (
+  <>
+    <Header />
+    <Section01 h1='Checkout' />
+    <Checkout />
+    <Footer />
+  </>
+  )
+}
+
 function App() {
 
   return (
@@ -56,6 +68,7 @@ function App() {
         <Route path='/cart' element={<CartPage />} />
         <Route path='/login' element={ <Login /> } />
         <Route path='/signup' element={ <Signup />} /> 
+        <Route path='/checkout' element={ <CheckoutPage /> } />
       </Routes>
     </BrowserRouter>
     </>

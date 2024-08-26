@@ -1,0 +1,67 @@
+.checkoutContainer {
+    height: 1829px;
+    display: flex;
+    justify-content: center;
+}
+
+.billingDetailsContainer {
+    margin-top: 60px;
+}
+
+.billingDetailsContainer .rest {
+    display: flex;
+    flex-direction: column;
+}
+
+.billingDetailsContainer .rest input {
+    height: 75px;
+    width: 453px;
+    margin-top: 20px;
+    border: 1px solid #9F9F9F;
+    border-radius: 10px;
+}
+
+.billingDetailsContainer .rest label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.billingDetailsContainer h2 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.nameCheckout {
+    display: flex;
+    margin-top: 30px;
+}
+
+.nameCheckout input {
+    margin-top: 20px;
+}
+
+.nameCheckout label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.firstNameDiv, .lastNameDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstNameInput, .lastNameInput {
+    width: 211px;
+    height: 75px;
+    border: 1px solid #9F9F9F;
+    border-radius: 10px;
+}
+
+.firstNameInput {
+    margin-right: 29px;
+}
+
+.cartCheckoutContainer {
+    width: 608px;
+}
