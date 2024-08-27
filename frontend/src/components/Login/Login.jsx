@@ -2,6 +2,7 @@ import React from 'react'
 import './Login.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { showSuccessMessage, showErrorMessage } from '../Alert/Alert';
 
 const Login = () => {
 
@@ -22,17 +23,18 @@ const Login = () => {
   
       if (!response.ok) {
         const errorData = await response.json();
+        showErrorMessage()
         throw new Error(errorData.message || 'Unknown error');
       }
+
+      showSuccessMessage()
   
       const data = await response.json();
-
       localStorage.setItem('token', data.access_token);
       localStorage.setItem('userName', data.userName);
       navigate('/'); 
     } catch (error) {
       console.error('Error:', error.message);
-      alert(`${error.message}: Invalid email or password, please try again.`);
     }
   };
   
