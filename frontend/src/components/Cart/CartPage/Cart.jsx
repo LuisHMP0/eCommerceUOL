@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, decrement, increment, removeItem } from '../../store/cart/cartSlice';
+import { addItem, decrement, increment, removeItem } from '../../../store/cart/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css'
 import trash from './lixeira.png'
+import ConfirmDelete from '../ConfirmDelete/ConfirmDelete.jsx';
 
 const Cart = () => {
 
@@ -13,6 +14,14 @@ const Cart = () => {
   const total = cartItems.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
+
+  const handleDelete = async (itemId) => {
+    const isConfirmed = await ConfirmDelete();
+    if (isConfirmed) {
+      console.log(itemId)
+      dispatch(removeItem(itemId)); 
+    }
+  };
   
   const handleCheckoutClick = () => {
     const token = localStorage.getItem('token')
@@ -46,7 +55,7 @@ const Cart = () => {
                   <button className='decrement' onClick={() => dispatch(increment(item.id))}> + </button>
                 </div>
                 <p className='subtotalId'> Rp. {(item.quantity * item.price).toFixed(2)} </p>
-                <img className='trash' src={trash} alt="trash-remove" onClick={() => dispatch(removeItem(item.id))} />
+                <img className='trash' src={trash} alt="trash-remove" onClick={() => handleDelete(item.id)} />
               </div>
             ))
           ): <p className='noItemsMain'>No items in cart </p>}

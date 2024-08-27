@@ -7,8 +7,10 @@ import coracao from './img/coracaoLogo.png'
 import lupa from './img/lupaLogo.png'
 import logoHeader from './img/logoHeader.png'
 import { useSelector, useDispatch } from 'react-redux';
-import trash from '../../Cart/lixeira.png'
+import trash from '../../Cart/CartPage/lixeira.png'
 import { removeItem } from '../../../store/cart/cartSlice'
+import ConfirmDelete from '../../Cart/ConfirmDelete/ConfirmDelete';
+
 
 const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
@@ -19,6 +21,14 @@ const Header = () => {
   const token = localStorage.getItem('token');
   const userName = localStorage.getItem('userName');
   const isLogged = !!token;
+
+  const handleDelete = async (itemId) => {
+    const isConfirmed = await ConfirmDelete();
+    if (isConfirmed) {
+      console.log(itemId)
+      dispatch(removeItem(itemId)); 
+    }
+  };
 
   const handleMenuClick = () => {
     setShowMenuMobile(!showMenuMobile);
@@ -104,7 +114,7 @@ const Header = () => {
                             <p className='cartPrice'>{`Rp. ${item.quantity * item.price}`}</p>
                           </div>
                         </div>
-                        <img className='trashCartHeader' src={trash} alt='trash' onClick={() => {dispatch(removeItem(item.id))}} />
+                        <img className='trashCartHeader' src={trash} alt='trash' onClick={() => (handleDelete(item.id))} />
                       </div>))) : (<p className='noItems'>No items in cart</p>)}
                 </div>
                 </div>
