@@ -3,23 +3,35 @@ import './OnlyProduct.css'
 import faceImg from './imgs/facebook.svg'
 import linkedinImg from './imgs/linkedin.svg'
 import twitterImg from './imgs/twitter.svg'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../../../store/cart/cartSlice'
+import { toast, Bounce } from 'react-toastify'
 
 const OnlyProduct = () => {
-
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(1);
+  const [clickCount, setClickCount] = useState(0);
 
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+  const notify = () => toast.success("Product added to cart!", {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    transition: Bounce,  
+  });
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('pt-BR').format(price);
@@ -29,6 +41,7 @@ const OnlyProduct = () => {
     if (product) {
       dispatch(addItem({ product, quantity: count }));
       setCount(1);
+      notify()
     }
   }
 
@@ -38,6 +51,17 @@ const OnlyProduct = () => {
       const data = await response.json();
       setRelatedProducts((prev) => [...prev, ...data.relatedProducts]);
       setPage(page + 1);
+
+      setClickCount(prevCount => {
+        const newCount = prevCount + 1;
+
+        if (newCount >= 2) {
+          navigate('/');
+        }
+
+        return newCount
+      })
+
     } catch (error) {
       console.error('Error fetching more related products:', error);
     }
@@ -136,7 +160,6 @@ const OnlyProduct = () => {
   </section>
 
   <RelatedProducts relatedProducts={relatedProducts} onLoadMore={loadMoreRelatedProducts} />
-
   </>
   )
 }

@@ -80,7 +80,7 @@ const Header = () => {
         <nav className='nav1'>
             <ul>
                 <li> <Link to='/'> Home </Link> </li>
-                <li> <a href="#shop"> Shop </a> </li>
+                <li> <Link to='/'> Shop </Link> </li>
                 <li> <a href="#about"> About </a> </li>
                 <li> <a href="#contact"> Contact </a> </li>
             </ul>

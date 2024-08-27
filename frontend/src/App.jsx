@@ -11,6 +11,8 @@ import Cart from '../src/components/Cart/CartPage/Cart'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import Checkout from './components/Checkout/Checkout'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function HomePage() {
   return (
@@ -61,6 +63,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer />
     <BrowserRouter> 
       <Routes> 
         <Route path='/' element={<HomePage />} />
