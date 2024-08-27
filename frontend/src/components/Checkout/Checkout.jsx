@@ -3,6 +3,9 @@ import './Checkout.css'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../store/cart/cartSlice';
 
 const Checkout = () => {
     const [formData, setFormData] = useState({
@@ -20,6 +23,8 @@ const Checkout = () => {
     });
     const cartItems = useSelector((state) => state.cart.items);
     const [activeId, setActiveId] = useState(null);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const handleClick = (id) => {
       setActiveId(id === activeId ? null : id); 
@@ -58,7 +63,10 @@ const Checkout = () => {
         });
 
         if (response.ok) {
+            alert('Checkout successful!')
             console.log('Checkout successful!');
+            dispatch(clearCart());
+            navigate('/')
         } 
 
         } catch (error) {

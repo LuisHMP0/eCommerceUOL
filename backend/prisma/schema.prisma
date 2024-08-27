@@ -55,7 +55,7 @@ model Checkout {
   addOnAddress     String?
   emailAddress     String
   additionalInfo   String?
-  userId           String   @unique
+  userId           String   
   user             User     @relation(fields: [userId], references: [id])
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

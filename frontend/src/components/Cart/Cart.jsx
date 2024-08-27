@@ -7,12 +7,21 @@ import trash from './lixeira.png'
 
 const Cart = () => {
 
-  const cartItems = useSelector((state) => state.cart.items);
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const cartItems = useSelector((state) => state.cart.items);
   const total = cartItems.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
-  const navigate = useNavigate()
+  
+  const handleCheckoutClick = () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      navigate('/checkout')
+    } else {
+      navigate('/login')
+    }
+  }
 
   return (
     <>
@@ -53,7 +62,7 @@ const Cart = () => {
           <p className='totalCartMain'> Total </p>
           <p className='totalCartMainValue'> {total} </p>
         </div>
-        <button onClick={() => navigate('/checkout')} className='checkout'> Check Out </button>
+        <button onClick={() => handleCheckoutClick()} className='checkout'> Check Out </button>
       </div>
     </section>
     </>

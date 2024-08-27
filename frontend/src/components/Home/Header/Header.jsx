@@ -52,6 +52,15 @@ const Header = () => {
     localStorage.removeItem('token');
   }
 
+  const handleCheckoutClick = () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      navigate('/checkout')
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <header className='header'> 
         <div className='logo'>
@@ -105,7 +114,7 @@ const Header = () => {
                 </div>
                 <div className='buttonsLink'>
                   <button onClick={handleCartClick} className='Cart'> Cart </button>
-                  <button onClick={() => navigate('/checkout')} className='Checkout'> Checkout </button>
+                  <button onClick={() => handleCheckoutClick()} className='Checkout'> Checkout </button>
                   <button className='Comparison'> Comparison </button>
                 </div>
               </div>
