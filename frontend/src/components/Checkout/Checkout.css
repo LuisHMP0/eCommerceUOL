@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 
-.billingDetailsContainer .rest input {
+.billingDetailsContainer .rest .inputRest {
     height: 75px;
     width: 453px;
     margin-top: 20px;
@@ -64,4 +64,83 @@
 
 .cartCheckoutContainer {
     width: 608px;
+    margin: 60px 0 0 150px;
+}
+
+.cartCheckout, .productsCheckout, .totalCheckout, .subtotalNoDiscount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartCheckout {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.titleProductCheckout {
+    color: #9F9F9F;
+}
+
+.priceTotalCheckout {
+    font-size: 24px;
+    font-weight: 700;
+    color: #B88E2F;
+}
+
+.subtotalProductCheckout, .subNoDiscount { 
+    font-weight: 300;
+}
+
+.ball {
+    border: 1px solid #9F9F9F;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+}
+
+.ball.active {
+    background-color: black;
+}
+
+.paymentMethod {
+    border-top: 1px solid #D9D9D9;
+    margin-top: 40px;
+}
+
+.paymentMethod01, .paymentMethod02, .paymentMethod03 {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.privacyPolice {
+    font-weight: 600;
+}
+
+.pPrivacyPolices {
+    font-weight: 300;
+    margin-top: 30px;
+}
+
+.descriptionPayment {
+    color: #9F9F9F;
+    font-weight: 300;
+}
+
+.productsCheckout, .subtotalNoDiscount, .totalCheckout {
+    margin-top: 15px;
+}
+
+.makeCheckout {
+    height: 64px;
+    width: 318px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 40px 0 0 140px;
 }
