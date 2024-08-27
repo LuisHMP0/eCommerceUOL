@@ -2,6 +2,7 @@ import React from 'react'
 import './Signup.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { showErrorMessageSignup, showSuccessMessageSignup } from '../Alert/Alert';
 
 const Signup = () => {
 
@@ -23,13 +24,14 @@ const Signup = () => {
   
       if (!response.ok) {
         const errorData = await response.json();
+        showErrorMessageSignup()
         throw new Error(errorData.message || 'Unknown error');
       }
-  
+
+      showSuccessMessageSignup()
       navigate('/login'); 
     } catch (error) {
       console.error('Error:', error.message);
-      alert(`${error.message}, please try again.`);
     }
   };
 

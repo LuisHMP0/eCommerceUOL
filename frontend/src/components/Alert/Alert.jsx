@@ -20,4 +20,24 @@ const showErrorMessage = () => {
     });
 };
 
-export { showSuccessMessage, showErrorMessage};
+const showSuccessMessageSignup = () => {
+    Swal.fire({
+        title: 'Success!',
+        text: 'Sign up successfully! Now login.',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    });
+};
+
+const showErrorMessageSignup = () => {
+    Swal.fire({
+        title: 'Error!',
+        text: 'Error when registering, please try again.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK'
+    });
+};
+
+export { showSuccessMessage, showErrorMessage, showErrorMessageSignup, showSuccessMessageSignup};
