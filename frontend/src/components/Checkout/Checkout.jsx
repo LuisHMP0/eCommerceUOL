@@ -1,11 +1,12 @@
 import React from 'react'
 import './Checkout.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../store/cart/cartSlice';
+import { toast, Bounce } from 'react-toastify'
 
 const Checkout = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +27,31 @@ const Checkout = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const userName = localStorage.getItem('userName')
-    const email = localStorage.getItem('email')
+
+
+    const notifyErrorCheckout = () => toast.error('Checkout with invalid data, please check and try again.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+    });
+
+    const notifySuccessCheckout = () => toast.success('Checkout successful!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
 
     const handleClick = (id) => {
       setActiveId(id === activeId ? null : id); 
@@ -36,7 +61,7 @@ const Checkout = () => {
 
     const total = cartItems.reduce((acc, item) => {
         return acc + item.price * item.quantity;
-      }, 0);
+    }, 0);
 
     const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,16 +90,19 @@ const Checkout = () => {
         });
 
         if (response.ok) {
-            alert('Checkout successful!')
-            console.log('Checkout successful!');
+            notifySuccessCheckout()
             dispatch(clearCart());
             navigate('/')
-        } 
+        } else {
+            const errorData = await response.json(); 
+            notifyErrorCheckout();
+            console.error('Error during checkout:', errorData);
+        }
 
         } catch (error) {
-        console.error('Request error:', error);
+            console.error('Request error:', error);
         }
-  };
+    };
 
   return (
     <>
@@ -117,7 +145,7 @@ const Checkout = () => {
                 <input className='inputRest' type='text' name='addOnAddress' value={formData.addOnAddress} onChange={handleChange}/>
 
                 <label htmlFor='emailAddress'>Email address</label>
-                <input className='inputRest' type='email' name='emailAddress' value={formData.email || email} onChange={handleChange}/>
+                <input className='inputRest' type='email' name='emailAddress' value={formData.email} onChange={handleChange}/>
 
                 <label htmlFor='additionalInfo'></label>
                 <input className='inputRest' type='text' name='additionalInfo' placeholder='Additional information' value={formData.additionalInfo} onChange={handleChange}/>

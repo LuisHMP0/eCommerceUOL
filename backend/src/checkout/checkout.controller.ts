@@ -2,6 +2,7 @@ import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CheckoutService } from './checkout.service';
 import { Request } from 'express';
+import { CreateCheckoutDto } from './dto/createCheckout.dto';
 
 @Controller('checkout')
 export class CheckoutController {
@@ -9,7 +10,7 @@ export class CheckoutController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async createCheckout(@Req() req: Request, @Body() checkoutData: any) {
+  async createCheckout(@Req() req: Request, @Body() checkoutData: CreateCheckoutDto) {
     const userId = req.user['id']; 
     if (!userId) {
       throw new Error('[Cotroller] User ID is required');
