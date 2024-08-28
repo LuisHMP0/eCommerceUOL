@@ -77,6 +77,10 @@ body {
     margin-top: 20px;
 }
 
+.Pdescription {
+    width: 500px;
+}
+
 .productData .Psize, .Pcolor {
     color: #9F9F9F;
     font-size: 14px;

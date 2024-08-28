@@ -112,7 +112,7 @@ async function main() {
         discount: 0.3,
         newProduct: false,
         description: 'The Avalon Chair is a perfect blend of comfort and style, designed to enhance any dining experience with its luxurious upholstery and sleek design.',
-        categoryId: category2.id,
+        categoryId: category3.id,
         stock: 3,
       }, 
       {
@@ -122,7 +122,7 @@ async function main() {
         discount: null,
         newProduct: true,
         description: 'The Venice Armchair adds a modern flair to your living space, featuring a contemporary design that complements any décor.',
-        categoryId: category2.id,
+        categoryId: category3.id,
         stock: 3,
       },
       {
@@ -132,7 +132,7 @@ async function main() {
         discount: 0.1,
         newProduct: false,
         description: 'The Oslo Recliner combines functionality with comfort, offering adjustable positions and a plush design for ultimate relaxation.',
-        categoryId: category2.id,
+        categoryId: category3.id,
         stock: 3,
       },
       {
@@ -142,7 +142,7 @@ async function main() {
         discount: 0.1,
         newProduct: false,
         description: 'The Siena Swivel Chair is perfect for your workspace, combining ergonomic support with a sleek, modern look.',
-        categoryId: category2.id,
+        categoryId: category3.id,
         stock: 3,
       },
       {
@@ -152,7 +152,7 @@ async function main() {
         discount: 0.2,
         newProduct: false,
         description: 'The Bordeaux Coffee Table is a masterpiece of craftsmanship, offering a stylish focal point for your living room with its refined design.',
-        categoryId: category3.id,
+        categoryId: category2.id,
         stock: 3,
       }, 
       { 
@@ -162,7 +162,7 @@ async function main() {
         discount: null,
         newProduct: true,
         description: 'The Tuscany Dining Table is perfect for family gatherings, featuring a sturdy construction and a rustic charm that adds warmth to any dining area.',
-        categoryId: category3.id,
+        categoryId: category2.id,
         stock: 3,
       },
       {
@@ -172,7 +172,7 @@ async function main() {
         discount: 0.1,
         newProduct: false,
         description: 'The Capri Side Table is both functional and stylish, offering a perfect spot for your essentials with its modern design and compact size.',
-        categoryId: category3.id,
+        categoryId: category2.id,
         stock: 3,
       }, 
       {
@@ -182,7 +182,7 @@ async function main() {
         discount: 0.1,
         newProduct: false,
         description: 'The Geneva Bookshelf offers a stylish and functional way to organize your books and decor. Its sleek, modern design makes it a perfect addition to any living space.',
-        categoryId: category3.id,
+        categoryId: category2.id,
         stock: 3,
       }
     ]

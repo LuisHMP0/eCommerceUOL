@@ -46,6 +46,10 @@ const Produtos = () => {
         setPage(1); 
     }
 
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('pt-BR').format(price);
+    };
+
     return (
         <>
         <div className='produtos-container'>
@@ -79,18 +83,27 @@ const Produtos = () => {
             </div>
 
             <div className='produtos'>
-                {produtos.map((produto) => (
-                    <Produto
-                        key={produto.id}
-                        id={produto.id}
-                        src={produto.imageUrl}
-                        titulo={produto.title}
-                        subtitulo={produto.subtitle}
-                        preco={produto.price}
-                        desconto={produto.discount ? `${(produto.discount * 100).toFixed(0)}%` : ''}
-                        novoProduto={produto.newProduct}
-                    />
-                ))}
+                {produtos.map((produto) => {
+                    const preco = formatPrice(produto.price);
+                    const precoRiscado = produto.discount 
+                        ? formatPrice(produto.price / (1 - produto.discount)) 
+                        : formatPrice(produto.price);
+                    const desconto = produto.discount ? `${(produto.discount * 100).toFixed(0)}%` : '';
+
+                    return (
+                        <Produto
+                            key={produto.id}
+                            id={produto.id}
+                            src={produto.imageUrl}
+                            titulo={produto.title}
+                            subtitulo={produto.subtitle}
+                            preco={preco}
+                            precoRiscado={precoRiscado}
+                            desconto={desconto}
+                            novoProduto={produto.newProduct}
+                        />
+                    );
+                })}
             </div>
 
             <Botoes onPageChange={handlePageChange} />

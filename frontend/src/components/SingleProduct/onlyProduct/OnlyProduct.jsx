@@ -72,6 +72,8 @@ const OnlyProduct = () => {
       setRelatedProducts((prev) => [...prev, ...data.relatedProducts]);
       setPage(page + 1);
 
+      console.log(data)
+
       setClickCount(prevCount => {
         const newCount = prevCount + 1;
 
