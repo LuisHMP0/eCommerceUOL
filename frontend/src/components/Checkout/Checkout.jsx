@@ -1,6 +1,6 @@
 import React from 'react'
 import './Checkout.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,8 @@ const Checkout = () => {
     const [activeId, setActiveId] = useState(null);
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const userName = localStorage.getItem('userName')
+    const email = localStorage.getItem('email')
 
     const handleClick = (id) => {
       setActiveId(id === activeId ? null : id); 
@@ -84,7 +86,7 @@ const Checkout = () => {
 
                     <div className='firstNameDiv'>
                         <label className='firstName' htmlFor='firstName'>First Name</label>
-                        <input type='text' name='firstName' className='firstNameInput' value={formData.firstName} onChange={handleChange} />
+                        <input type='text' name='firstName' className='firstNameInput' value={formData.firstName || userName} onChange={handleChange} />
                     </div>
 
                     <div className='lastNameDiv'>
@@ -115,7 +117,7 @@ const Checkout = () => {
                 <input className='inputRest' type='text' name='addOnAddress' value={formData.addOnAddress} onChange={handleChange}/>
 
                 <label htmlFor='emailAddress'>Email address</label>
-                <input className='inputRest' type='email' name='emailAddress' value={formData.email} onChange={handleChange}/>
+                <input className='inputRest' type='email' name='emailAddress' value={formData.email || email} onChange={handleChange}/>
 
                 <label htmlFor='additionalInfo'></label>
                 <input className='inputRest' type='text' name='additionalInfo' placeholder='Additional information' value={formData.additionalInfo} onChange={handleChange}/>

@@ -28,10 +28,12 @@ const Login = () => {
       }
 
       showSuccessMessage()
-  
+
       const data = await response.json();
       localStorage.setItem('token', data.access_token);
       localStorage.setItem('userName', data.userName);
+      localStorage.setItem('email', data.email);
+      
       navigate('/'); 
     } catch (error) {
       console.error('Error:', error.message);
