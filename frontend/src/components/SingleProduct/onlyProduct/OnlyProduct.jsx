@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../../store/cart/cartSlice'
 import { toast, Bounce } from 'react-toastify'
 
@@ -21,7 +21,7 @@ const OnlyProduct = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const notify = () => toast.success("Product added to cart!", {
+  const notifySuccess = () => toast.success("Product added to cart!", {
     position: "top-left",
     autoClose: 5000,
     hideProgressBar: false,
@@ -33,15 +33,35 @@ const OnlyProduct = () => {
     transition: Bounce,  
   });
 
+  const notifyError = () => toast.error('Product out of stock.', {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    transition: Bounce,
+    });
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('pt-BR').format(price);
   };
 
+  const cartItems = useSelector((state) => state.cart.items);
   const handleAddToCart = () => {
     if (product) {
+      const cartItem = cartItems.find(item => item.id === product.id);
+      const currentQuantityInCart = cartItem ? cartItem.quantity : 0;
+
+      if (currentQuantityInCart + count > product.stock) {
+        notifyError()
+        return;
+      }
       dispatch(addItem({ product, quantity: count }));
       setCount(1);
-      notify()
+      notifySuccess()
     }
   }
 

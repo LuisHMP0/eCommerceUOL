@@ -27,14 +27,20 @@ export const cartSlice = createSlice({
         },
         addItem: (state, action) => {
             const { product, quantity } = action.payload;
-            const existingItem = state.items.find(item => item.id === product.id)
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                state.items.push({...product, quantity})
+            const existingItem = state.items.find(item => item.id === product.id);
+            const currentQuantityInCart = existingItem ? existingItem.quantity : 0;
+          
+            if (currentQuantityInCart + quantity > product.stock) {
+              return;
             }
-            
-            state.quantityItens += quantity;
+          
+            if (existingItem) {
+              existingItem.quantity += quantity;
+            } else {
+              state.items.push({ ...product, quantity });
+            }
+          
+            state.quantityItens += quantity;     
         },
         removeItem: (state, action) => {
             const id = action.payload;

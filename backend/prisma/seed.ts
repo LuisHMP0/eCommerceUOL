@@ -14,6 +14,7 @@ async function main() {
         newProduct: false,
         imageUrl: `${BASE_URL}/imgs/syltherine.png`,
         description: 'Descrição do Produto 1',
+        stock: 3,
       },
     ]
   });

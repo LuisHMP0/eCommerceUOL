@@ -22,6 +22,7 @@ model Product {
   newProduct Boolean
   imageUrl String?
   description String?
+  stock Int 
   categoryId Int? 
   category Category? @relation(fields: [categoryId], references: [id])
 }
