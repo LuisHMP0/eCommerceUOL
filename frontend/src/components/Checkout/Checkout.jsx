@@ -26,7 +26,6 @@ const Checkout = () => {
     const [activeId, setActiveId] = useState(null);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const userName = localStorage.getItem('userName')
 
 
     const notifyErrorCheckout = () => toast.error('Checkout with invalid data, please check and try again.', {
@@ -114,7 +113,7 @@ const Checkout = () => {
 
                     <div className='firstNameDiv'>
                         <label className='firstName' htmlFor='firstName'>First Name</label>
-                        <input type='text' name='firstName' className='firstNameInput' value={formData.firstName || userName} onChange={handleChange} />
+                        <input type='text' name='firstName' className='firstNameInput' value={formData.firstName} onChange={handleChange} />
                     </div>
 
                     <div className='lastNameDiv'>

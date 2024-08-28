@@ -1,28 +1,36 @@
-import { IsString, IsEmail, IsOptional } from 'class-validator';
+import { IsString, IsEmail, IsOptional, IsNotEmpty } from 'class-validator';
 
 export class CreateCheckoutDto {
+  @IsNotEmpty()
   @IsString()
   firstName: string;
 
+  @IsNotEmpty()
   @IsString()
   lastName: string;
 
+  
   @IsOptional()
   @IsString()
   companyName?: string;
 
+  @IsNotEmpty()
   @IsString()
   zipCode: string;
 
+  @IsNotEmpty()
   @IsString()
   country: string;
 
+  @IsNotEmpty()
   @IsString()
   streetAddress: string;
 
+  @IsNotEmpty()
   @IsString()
   city: string;
 
+  @IsNotEmpty()
   @IsString()
   province: string;
 
@@ -30,6 +38,7 @@ export class CreateCheckoutDto {
   @IsString()
   addOnAddress?: string;
 
+  @IsNotEmpty()
   @IsEmail()
   emailAddress: string;
 
